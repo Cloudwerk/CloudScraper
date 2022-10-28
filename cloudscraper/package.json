@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@azure/msal-browser": "^2.30.0",
+    "@azure/msal-react": "^1.4.9",
     "@fluentui/react": "^8.98.8",
     "@microsoft/sp-http": "^1.15.2",
     "@testing-library/jest-dom": "^5.16.5",
