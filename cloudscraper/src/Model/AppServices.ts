@@ -11,6 +11,8 @@ export class AppServices {
 
         headers.append("Authorization", bearer);
 
+        console.log(headers);
+
         const options = {
             method: "GET",
             headers: headers,
@@ -18,27 +20,41 @@ export class AppServices {
 
         return fetch(graphConfig.graphEndPoint, options)
             .then(response => response.json()
-            .then((json: JSON) => asdf(json)
+            .then((json: JSON) => DecodeJson(json)
             ))
             .catch(error => console.log(error))
 
-            function asdf(response: any) {
-                const hits: any[] = response.value.hitsContainers[0].hits;
+            function DecodeJson(response: any) {
+                const values = response.value
                 const sites: ISitesArrayInterface[] = [];
 
-                hits.map((hitItem) => {
-                    sites.push({
-                            SiteName: hitItem.resource.displayName,
-                            Url: hitItem.resource.webUrl,
-                            SiteOwner: "",
-                            DateModified: hitItem.resource.lastModifiedDateTime,
-                            DateCreated: hitItem.resource.createdDateTime
-                    }); 
-                });
+                values.forEach((site: any) => sites.push({
+                    SiteName: site.displayName,
+                    Url: site.webUrl,
+                    SiteOwner: "",
+                    DateModified: site.lastModifiedDateTime,
+                    DateCreated: site.createdDateTime
+                }))
 
-                console.log(sites)
+                console.log(sites);
+            }
+
+            // function asdf(response: any) {
+            //     const hits: any[] = response.value.hitsContainers[0].hits;
+            //     const sites: ISitesArrayInterface[] = [];
+
+            //     hits.map((hitItem) => {
+            //         sites.push({
+            //                 SiteName: hitItem.resource.displayName,
+            //                 Url: hitItem.resource.webUrl,
+            //                 SiteOwner: "",
+            //                 DateModified: hitItem.resource.lastModifiedDateTime,
+            //                 DateCreated: hitItem.resource.createdDateTime
+            //         }); 
+            //     });
+
+                
 
 
         }
     };
-}

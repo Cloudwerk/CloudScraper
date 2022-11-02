@@ -22,7 +22,7 @@ class CloudScraperApp extends React.Component<any, any > {
           <TokenFetcher myApp={this.appServices} />
           <PageLayout> 
             <AuthenticatedTemplate> 
-              <RequestSitesButton onClick={this.appServices.RequestSites}/>
+              <RequestSitesButton appService={this.appServices}/>
             </AuthenticatedTemplate>
             <UnauthenticatedTemplate />
           </PageLayout>
