@@ -1,4 +1,4 @@
-import { DetailsList, IColumn, IList, SelectionMode } from '@fluentui/react';
+import { DetailsList, IColumn, SelectionMode } from '@fluentui/react';
 import React from 'react';
 import { testdata } from '../Model/Testdata';
 

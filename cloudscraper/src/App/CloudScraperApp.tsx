@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Searchbar } from "../View/Searchbar";
 import { SiteList } from "../View/SiteList";
-// import { Authenticator } from "./Authenticator";
 import { PageLayout } from "../View/PageLayout";
-import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from "@azure/msal-react";
+import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 import { AppServices } from "../Model/AppServices";
 import { RequestSitesButton } from "../View/RequestSitesButton";
 import { TokenFetcher } from "../Model/TokenFetcher";
