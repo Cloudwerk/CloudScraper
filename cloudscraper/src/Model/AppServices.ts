@@ -3,11 +3,7 @@ import { graphConfig } from "./authConfig"
 import { ISitesArrayInterface } from "./Interfaces/ISitesArrayInterface";
 
 export class AppServices {
-    private userAccessToken: AuthenticationResult;
-
-    constructor(accessToken: string) {
-        this.userAccessToken = accessToken;
-    }
+ public userAccessToken: string = "";
 
     public RequestSites() {
         const headers = new Headers();

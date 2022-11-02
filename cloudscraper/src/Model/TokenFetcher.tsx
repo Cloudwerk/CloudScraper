@@ -14,6 +14,9 @@ export const TokenFetcher = (props: ITokenFetcherProps) => {
                 ...loginRequest,
                 account: accounts[0],
             })
+            .then(authResult => {
+                    props.myApp.userAccessToken = authResult.accessToken
+            });
     
 
     return (
