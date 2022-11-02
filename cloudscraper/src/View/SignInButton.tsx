@@ -1,4 +1,3 @@
-import React from "react";
 import { useMsal } from "@azure/msal-react";
 import { loginRequest } from "../Model/authConfig";
 import { PrimaryButton } from "@fluentui/react";

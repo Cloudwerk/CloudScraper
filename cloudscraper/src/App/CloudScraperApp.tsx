@@ -7,9 +7,11 @@ import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from "@azure/
 import { AppServices } from "../Model/AppServices";
 import { RequestSitesButton } from "../View/RequestSitesButton";
 import { TokenFetcher } from "../Model/TokenFetcher";
+import { ISitesArrayInterface } from "../Model/Interfaces/ISitesArrayInterface";
 
 class CloudScraperApp extends React.Component<any, any > {
   appServices = new AppServices();
+  sitesList: ISitesArrayInterface[] = []
 
   constructor(props: any) {
     super(props);
@@ -23,15 +25,13 @@ class CloudScraperApp extends React.Component<any, any > {
           <PageLayout> 
             <AuthenticatedTemplate> 
               <RequestSitesButton appService={this.appServices}/>
+              <Searchbar />
+              <SiteList />
             </AuthenticatedTemplate>
-            <UnauthenticatedTemplate />
+            <UnauthenticatedTemplate>
+
+            </UnauthenticatedTemplate>
           </PageLayout>
-        </div>
-        <div>
-          <Searchbar />
-        </div>
-        <div>
-          <SiteList />
         </div>
       </div>
 

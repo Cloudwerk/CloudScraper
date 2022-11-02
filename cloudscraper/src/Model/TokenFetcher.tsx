@@ -22,7 +22,6 @@ export const TokenFetcher = (props: ITokenFetcherProps) => {
 
     return (
         <>
-        DONE
         </>
     )
 }

@@ -1,4 +1,3 @@
-import { AuthenticationResult } from "@azure/msal-browser";
 import { graphConfig } from "./authConfig"
 import { ISitesArrayInterface } from "./Interfaces/ISitesArrayInterface";
 
