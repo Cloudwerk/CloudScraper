@@ -1,5 +1,5 @@
 export interface ISitesArrayInterface {
-    key: string;
+    key?: string;
     SiteName: string;
     Url: string;
     SiteOwner: string;

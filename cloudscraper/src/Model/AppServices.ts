@@ -31,7 +31,7 @@ export class AppServices {
         let counter = 1;
         graphValues.map((siteData) => {
             this.sitesList.push({
-                key: (counter++) + "-idx",
+                // key: (counter++) + "-idx",
                 SiteName: siteData.displayName,
                 Url: siteData.webUrl,
                 SiteOwner: "",

@@ -33,7 +33,6 @@ export function RenderSitesList(props: IRenderSitesListProps) {
         return (
             <>
                 <DetailsList
-                
                 setKey={"key"}
                 items={props.appServices.sitesList}
                 columns={_columns}

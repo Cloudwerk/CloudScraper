@@ -15,6 +15,11 @@ class CloudScraperApp extends React.Component<any, any > {
     super(props);
   }
 
+  private onListUpdateCallback(): void {
+    console.log("Forced update");
+    this.forceUpdate();
+  }
+
   public render(): JSX.Element {
     return (
       <div>
@@ -22,7 +27,7 @@ class CloudScraperApp extends React.Component<any, any > {
           <TokenFetcher myApp={this.appServices} />
           <PageLayout> 
             <AuthenticatedTemplate> 
-              <RequestSitesButton appServices={this.appServices}/>
+              <RequestSitesButton appServices={this.appServices} updateCallback={this.onListUpdateCallback.bind(this)} />
               <Searchbar />
               <RenderSitesList appServices={this.appServices} />
             </AuthenticatedTemplate>
