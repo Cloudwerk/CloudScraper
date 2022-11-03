@@ -6,7 +6,7 @@ import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-reac
 import { AppServices } from "../Model/AppServices";
 import { RequestSitesButton } from "../View/RequestSitesButton";
 import { TokenFetcher } from "../Model/TokenFetcher";
-import { ISitesArrayInterface } from "../Model/Interfaces/ISitesArrayInterface";
+import '../style.css'
 
 class CloudScraperApp extends React.Component<any, any > {
   appServices = new AppServices();
@@ -27,8 +27,10 @@ class CloudScraperApp extends React.Component<any, any > {
           <TokenFetcher myApp={this.appServices} />
           <PageLayout> 
             <AuthenticatedTemplate> 
-              <RequestSitesButton appServices={this.appServices} updateCallback={this.onListUpdateCallback.bind(this)} />
+              <div className={"DisplayFlex"}>
               <Searchbar />
+              <RequestSitesButton appServices={this.appServices} updateCallback={this.onListUpdateCallback.bind(this)} />
+              </div>
               <RenderSitesList appServices={this.appServices} />
             </AuthenticatedTemplate>
             <UnauthenticatedTemplate>

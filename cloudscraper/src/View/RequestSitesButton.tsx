@@ -12,7 +12,7 @@ export function RequestSitesButton(props: IRequestSitesButton) {
         <>
             <PrimaryButton
                 label="RequestSitesBtn"
-                text="Request Sites"
+                text="Load Sites"
                 onClick={onClickFunc}
             />
         </>
