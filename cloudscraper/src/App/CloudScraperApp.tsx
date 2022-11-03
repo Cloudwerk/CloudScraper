@@ -1,6 +1,6 @@
 import React from "react";
 import { Searchbar } from "../View/Searchbar";
-import { SiteList } from "../View/SiteList";
+import { RenderSitesList } from "../View/SiteList";
 import { PageLayout } from "../View/PageLayout";
 import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 import { AppServices } from "../Model/AppServices";
@@ -10,7 +10,6 @@ import { ISitesArrayInterface } from "../Model/Interfaces/ISitesArrayInterface";
 
 class CloudScraperApp extends React.Component<any, any > {
   appServices = new AppServices();
-  sitesList: ISitesArrayInterface[] = []
 
   constructor(props: any) {
     super(props);
@@ -23,9 +22,9 @@ class CloudScraperApp extends React.Component<any, any > {
           <TokenFetcher myApp={this.appServices} />
           <PageLayout> 
             <AuthenticatedTemplate> 
-              <RequestSitesButton appService={this.appServices}/>
+              <RequestSitesButton appServices={this.appServices}/>
               <Searchbar />
-              <SiteList />
+              <RenderSitesList appServices={this.appServices}/>
             </AuthenticatedTemplate>
             <UnauthenticatedTemplate>
 

@@ -1,5 +1,5 @@
 import { AppServices } from "../AppServices";
 
-export interface IRequestSitesButton {
+export interface IAppServiceInterface {
     appServices: AppServices
-};
+}

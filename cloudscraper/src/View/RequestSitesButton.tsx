@@ -3,7 +3,7 @@ import { IRequestSitesButton } from "../Model/Interfaces/IRequestSitesButton";
 
 export function RequestSitesButton(props: IRequestSitesButton) {
     let onClickFunc = (): void => {
-        props.appService.RequestSites()
+        props.appServices.RequestSites()
     }
 
     return (
