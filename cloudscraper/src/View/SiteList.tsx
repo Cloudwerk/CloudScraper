@@ -1,27 +1,25 @@
 import { DetailsList, IColumn, SelectionMode } from '@fluentui/react';
-import React, { useState } from 'react';
-import { testdata } from '../Model/Testdata';
+import { useEffect, useState } from 'react';
+import { AppServices } from '../Model/AppServices';
 import { ISitesArrayInterface } from '../Model/Interfaces/ISitesArrayInterface';
-import { IAppServiceInterface } from '../Model/Interfaces/IAppServicesInterface';
 
-
-// export interface IListItem {
-//     title: string;
-//     url: string;
-//     siteOwner: String;
-//     description: string;
-//     lastEdited: string;
-//     dateCreated: string;
-// }
-
-// export interface IListArray {
-//     items: ISitesArrayInterface[]
-// }
-
-export function RenderSitesList(props: IAppServiceInterface) {
-    // props.appServices.RequestSites()
+export interface IRenderSitesListProps {
+    appServices: AppServices,
+}
+export function RenderSitesList(props: IRenderSitesListProps) {
     let _columns: IColumn[];
 
+    // const [time, setTime] = useState(Date.now());
+    // useEffect(() => {
+    //     const interval = setInterval(() => setTime(Date.now()), 1000);
+    //     return () => {
+    //         clearInterval(interval)
+    //     };
+    // })
+
+    // this.state = {
+    //     items: props.appServices.sitesList
+    // }
 
         _columns = [
             { key: 'column1', name: 'Name', fieldName: 'SiteName', isResizable: true, minWidth: 100, maxWidth: 200},
@@ -35,10 +33,16 @@ export function RenderSitesList(props: IAppServiceInterface) {
         return (
             <>
                 <DetailsList
+                
+                setKey={"key"}
                 items={props.appServices.sitesList}
                 columns={_columns}
                 selectionMode={SelectionMode.none}
                 />
+                <div>
+                    {props.appServices.sitesList.length}
+                </div>
             </>
         )
+
 }

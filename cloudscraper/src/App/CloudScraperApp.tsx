@@ -24,7 +24,7 @@ class CloudScraperApp extends React.Component<any, any > {
             <AuthenticatedTemplate> 
               <RequestSitesButton appServices={this.appServices}/>
               <Searchbar />
-              <RenderSitesList appServices={this.appServices}/>
+              <RenderSitesList appServices={this.appServices} />
             </AuthenticatedTemplate>
             <UnauthenticatedTemplate>
 

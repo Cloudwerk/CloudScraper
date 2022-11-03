@@ -5,7 +5,7 @@ export class AppServices {
  public userAccessToken: string = "";
  public sitesList: ISitesArrayInterface[] = []
 
-    public RequestSites() {
+    public async RequestSites(): Promise<void | ISitesArrayInterface[]> {
         const headers = new Headers();
         const bearer = `Bearer ${this.userAccessToken}`;
 
@@ -16,27 +16,34 @@ export class AppServices {
             headers: headers,
         };
 
-        return fetch(graphConfig.graphEndPoint, options)
+        var graphValues: any[] = []
+        await fetch(graphConfig.graphEndPoint, options)
             .then(response => response.json()
-            .then((response: JSON) => DecodeJson(response, this.sitesList)
-            ))
-            .catch(error => console.log(error))
+            .then((response: any) => {
+                graphValues = response.value
+            }))
 
-            function DecodeJson(response: any, sitesList: ISitesArrayInterface[]) {
-                const values = response.value
-                sitesList = [];
+        // console.log("graphValues:::")
+        // console.log(graphValues)
 
-                values.forEach((site: any) => sitesList.push({
-                    SiteName: site.displayName,
-                    Url: site.webUrl,
-                    SiteOwner: "",
-                    Description: site.Description,
-                    DateModified: site.lastModifiedDateTime,
-                    DateCreated: site.createdDateTime
-                }))
+        
+        this.sitesList = []
+        let counter = 1;
+        graphValues.map((siteData) => {
+            this.sitesList.push({
+                key: (counter++) + "-idx",
+                SiteName: siteData.displayName,
+                Url: siteData.webUrl,
+                SiteOwner: "",
+                Description: siteData.Description,
+                DateModified: siteData.lastModifiedDateTime,
+                DateCreated: siteData.createdDateTime
+            })
+        })
 
-                console.log("AppServices siteList: ");
-                console.log(sitesList)
-            }
-        }
-    };
+        console.log(this.sitesList);
+        return this.sitesList
+    }
+
+    
+}

@@ -2,8 +2,9 @@ import { PrimaryButton } from "@fluentui/react";
 import { IRequestSitesButton } from "../Model/Interfaces/IRequestSitesButton";
 
 export function RequestSitesButton(props: IRequestSitesButton) {
-    let onClickFunc = (): void => {
-        props.appServices.RequestSites()
+    let onClickFunc = async (): Promise<void> => {
+        await props.appServices.RequestSites();
+        console.log("done")
     }
 
     return (
