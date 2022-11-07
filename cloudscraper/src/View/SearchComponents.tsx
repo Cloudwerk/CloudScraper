@@ -1,12 +1,12 @@
 import { PrimaryButton, TextField } from "@fluentui/react";
 import React from "react";
-import { IRequestSitesButton } from "../Model/Interfaces/IRequestSitesButton";
+import { ISearchComponents } from "../Model/Interfaces/ISearchComponents";
 
 
-export class SearchComponents extends React.Component<IRequestSitesButton> {
+export class SearchComponents extends React.Component<ISearchComponents> {
     private searchArgs: string = "";
 
-    constructor(props: IRequestSitesButton) {
+    constructor(props: ISearchComponents) {
         super(props);
     }
 
@@ -22,9 +22,8 @@ export class SearchComponents extends React.Component<IRequestSitesButton> {
     }
 
     private ButtonFunc = async (): Promise<void> => {
-        console.log(this.searchArgs);
-            await this.props.appServices.RequestSites(this.searchArgs);
-            this.props.updateCallback();
+        console.log(this.props.userAccessToken);
+            await this.props.RequestSitesFunc(this.props.setSitesListFunc, this.props.userAccessToken, this.searchArgs);
         };
 
     public render(): JSX.Element {

@@ -5,7 +5,3 @@ body {
 .DisplayFlex {
   display: flex;
 }
-
-.SmallPaddingRight {
-  margin-right: 10px;
-}

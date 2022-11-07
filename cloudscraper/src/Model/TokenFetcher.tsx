@@ -1,9 +1,8 @@
-import { loginRequest } from "./authConfig";
+import { loginRequest } from "../authConfig";
 import { useMsal } from "@azure/msal-react";
-import { AppServices } from "./AppServices";
 
 export interface ITokenFetcherProps {
-    myApp: AppServices
+    setToken: Function
 }
 
 export const TokenFetcher = (props: ITokenFetcherProps) => {
@@ -15,7 +14,7 @@ export const TokenFetcher = (props: ITokenFetcherProps) => {
                 account: accounts[0],
             })
             .then(authResult => {
-                    props.myApp.userAccessToken = authResult.accessToken
+                props.setToken(authResult.accessToken)
             });
     
 

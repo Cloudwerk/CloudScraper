@@ -1,50 +1,52 @@
-import React from "react";
-import { Searchbar } from "../View/Searchbar";
-import { RenderSitesList } from "../View/SiteList";
+import React, { useState } from "react";
+import { RenderSitesList } from "../View/RenderSitesList";
 import { PageLayout } from "../View/PageLayout";
 import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 import { AppServices } from "../Model/AppServices";
-import { RequestSitesButton } from "../View/RequestSitesButton";
 import { TokenFetcher } from "../Model/TokenFetcher";
+import { RequestSites } from "../Model/RequestSites";
 import '../style.css'
 import { SearchComponents } from "../View/SearchComponents";
 
-class CloudScraperApp extends React.Component<any, any > {
-  appServices = new AppServices();
+const CloudScraperApp = () => {
+  var app = new AppServices();
+  const [ sitesList, setSitesList ] = useState(app.sitesList);
+  const [ userAccessToken, setUserAccessToken ] = useState(app.userAccessToken);
 
-  constructor(props: any) {
-    super(props);
-  }
-
-  private onListUpdateCallback(): void {
-    console.log("Forced update");
-    this.forceUpdate();
-  }
-
-  public render(): JSX.Element {
     return (
       <div>
-        <div>
-          <TokenFetcher myApp={this.appServices} />
-          <PageLayout> 
-            <AuthenticatedTemplate> 
-              <div className={"DisplayFlex"}>
-              <SearchComponents appServices={this.appServices} updateCallback={this.onListUpdateCallback.bind(this)}/>
-              {/* <Searchbar />
-              <RequestSitesButton appServices={this.appServices} updateCallback={this.onListUpdateCallback.bind(this)} /> */}
-              </div>
-              <RenderSitesList appServices={this.appServices} />
-            </AuthenticatedTemplate>
-            <UnauthenticatedTemplate>
-
-            </UnauthenticatedTemplate>
-          </PageLayout>
-        </div>
+        <TokenFetcher setToken={setUserAccessToken}/>
+        <PageLayout>
+          <AuthenticatedTemplate>
+            <SearchComponents RequestSitesFunc={RequestSites} setSitesListFunc={setSitesList} userAccessToken={userAccessToken} />
+            <RenderSitesList sitesArray={sitesList} />
+          </AuthenticatedTemplate>
+        </PageLayout>
       </div>
+
+
+
+      // <div>
+      //   <div>
+      //     <TokenFetcher myApp={this.appServices} />
+      //     <PageLayout> 
+      //       <AuthenticatedTemplate> 
+      //         <div className={"DisplayFlex"}>
+      //         <SearchComponents appServices={this.appServices} updateCallback={this.onListUpdateCallback.bind(this)}/>
+      //         {/* <Searchbar />
+      //         <RequestSitesButton appServices={this.appServices} updateCallback={this.onListUpdateCallback.bind(this)} /> */}
+      //         </div>
+      //         <RenderSitesList appServices={this.appServices} />
+      //       </AuthenticatedTemplate>
+      //       <UnauthenticatedTemplate>
+
+      //       </UnauthenticatedTemplate>
+      //     </PageLayout>
+      //   </div>
+      // </div>
 
       
     );
-  }
 }
 
 export default CloudScraperApp;

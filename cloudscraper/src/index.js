@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import CloudScraperApp from './App/CloudScraperApp.tsx';
 import { PublicClientApplication } from '@azure/msal-browser';
 import { MsalProvider } from '@azure/msal-react';
-import { msalConfig } from './Model/authConfig';
+import { msalConfig } from './authConfig';
 import './style.css';
 
 const msalInstance = new PublicClientApplication(msalConfig)

@@ -1,25 +1,8 @@
 import { ConstrainMode, DetailsList, DetailsListLayoutMode, IColumn, SelectionMode } from '@fluentui/react';
-import { useEffect, useState } from 'react';
-import { AppServices } from '../Model/AppServices';
-import { ISitesArrayInterface } from '../Model/Interfaces/ISitesArrayInterface';
+import { IRenderSitesList } from '../Model/Interfaces/IRenderSitesList';
 
-export interface IRenderSitesListProps {
-    appServices: AppServices,
-}
-export function RenderSitesList(props: IRenderSitesListProps) {
+export function RenderSitesList(props: IRenderSitesList) {
     let _columns: IColumn[];
-
-    // const [time, setTime] = useState(Date.now());
-    // useEffect(() => {
-    //     const interval = setInterval(() => setTime(Date.now()), 1000);
-    //     return () => {
-    //         clearInterval(interval)
-    //     };
-    // })
-
-    // this.state = {
-    //     items: props.appServices.sitesList
-    // }
 
         _columns = [
             { key: 'column1', name: 'Name', fieldName: 'SiteName', minWidth: 100, maxWidth: 300, isResizable: true,},
@@ -34,7 +17,7 @@ export function RenderSitesList(props: IRenderSitesListProps) {
             <>
                 <DetailsList
                 setKey={"key"}
-                items={props.appServices.sitesList}
+                items={props.sitesArray}
                 columns={_columns}
                 selectionMode={SelectionMode.none}
                 layoutMode={DetailsListLayoutMode.fixedColumns}
