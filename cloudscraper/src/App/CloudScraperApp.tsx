@@ -7,6 +7,7 @@ import { AppServices } from "../Model/AppServices";
 import { RequestSitesButton } from "../View/RequestSitesButton";
 import { TokenFetcher } from "../Model/TokenFetcher";
 import '../style.css'
+import { SearchComponents } from "../View/SearchComponents";
 
 class CloudScraperApp extends React.Component<any, any > {
   appServices = new AppServices();
@@ -28,8 +29,9 @@ class CloudScraperApp extends React.Component<any, any > {
           <PageLayout> 
             <AuthenticatedTemplate> 
               <div className={"DisplayFlex"}>
-              <Searchbar />
-              <RequestSitesButton appServices={this.appServices} updateCallback={this.onListUpdateCallback.bind(this)} />
+              <SearchComponents appServices={this.appServices} updateCallback={this.onListUpdateCallback.bind(this)}/>
+              {/* <Searchbar />
+              <RequestSitesButton appServices={this.appServices} updateCallback={this.onListUpdateCallback.bind(this)} /> */}
               </div>
               <RenderSitesList appServices={this.appServices} />
             </AuthenticatedTemplate>

@@ -4,8 +4,9 @@ import { ISitesArrayInterface } from "./Interfaces/ISitesArrayInterface";
 export class AppServices {
  public userAccessToken: string = "";
  public sitesList: ISitesArrayInterface[] = []
+ private graphEndPoint = graphConfig.graphEndPoint
 
-    public async RequestSites(): Promise<void | ISitesArrayInterface[]> {
+    public async RequestSites(searchArgs?: string): Promise<void | ISitesArrayInterface[]> {
         const headers = new Headers();
         const bearer = `Bearer ${this.userAccessToken}`;
 
@@ -17,7 +18,7 @@ export class AppServices {
         };
 
         var graphValues: any[] = []
-        await fetch(graphConfig.graphEndPoint, options)
+        await fetch(this.graphEndPoint + searchArgs, options)
             .then(response => response.json()
             .then((response: any) => {
                 graphValues = response.value
