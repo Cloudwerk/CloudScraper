@@ -38,7 +38,7 @@ export class SearchComponents extends React.Component<ISearchComponents> {
                 label="RequestSitesBtn"
                 text="Load Sites"
                 onClick={this.ButtonFunc}
-            />
+                />
             </>
         )
     }

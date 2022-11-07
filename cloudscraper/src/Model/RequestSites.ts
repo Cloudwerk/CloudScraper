@@ -2,8 +2,6 @@ import { graphConfig } from "../authConfig";
 import { ISitesArray } from "./Interfaces/ISitesArray";
 
 export async function RequestSites(setSitesList: Function, userAccessToken: string, searchArgs?: string) {
-    console.log(userAccessToken);
-    console.log(setSitesList);
     const headers = new Headers();
     const bearer = `Bearer ${userAccessToken}`;
 
@@ -20,12 +18,10 @@ export async function RequestSites(setSitesList: Function, userAccessToken: stri
             .then(response => response.json()
             .then((response: any) => {
                 graphValues = response.value
-                console.log(graphValues);
             }));
 
         graphValues.map((siteData) => {
                 sitesList.push({
-                    // key: (counter++) + "-idx",
                     SiteName: siteData.displayName,
                     Url: siteData.webUrl,
                     SiteOwner: "",
