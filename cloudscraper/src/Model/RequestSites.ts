@@ -4,6 +4,10 @@ import { ISitesArray } from "./Interfaces/ISitesArray";
 export async function RequestSites(setSitesList: Function, userAccessToken: string, searchArgs?: string) {
     const headers = new Headers();
     const bearer = `Bearer ${userAccessToken}`;
+    let skipToken = "";
+
+    const amountSites: number = 5;
+   
 
         headers.append("Authorization", bearer);
 
@@ -11,13 +15,14 @@ export async function RequestSites(setSitesList: Function, userAccessToken: stri
             method: "GET",
             headers: headers,
         };
-
+        // "&$skip=" + `${skipToken}`
         var sitesList: ISitesArray[] = [];
         var graphValues: any[] = [];
-        await fetch(graphConfig.graphEndPoint + searchArgs, options)
+        await fetch(graphConfig.graphEndPoint + `${searchArgs}` + "&$top=" + `${amountSites}` + `${skipToken}`, options)
             .then(response => response.json()
             .then((response: any) => {
                 graphValues = response.value
+                skipToken = response.value.skipToken
             }));
 
         graphValues.map((siteData) => {
