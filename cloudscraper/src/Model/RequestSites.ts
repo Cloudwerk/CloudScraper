@@ -6,7 +6,7 @@ export async function RequestSites(setSitesList: Function, userAccessToken: stri
     const bearer = `Bearer ${userAccessToken}`;
     let skipToken = "";
 
-    const amountSites: number = 5;
+    const amountSites: number = 30;
    
 
         headers.append("Authorization", bearer);
