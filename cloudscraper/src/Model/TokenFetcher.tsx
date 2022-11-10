@@ -15,6 +15,7 @@ export const TokenFetcher = (props: ITokenFetcherProps) => {
             })
             .then(authResult => {
                 props.setToken(authResult.accessToken)
+                
             });
     
 

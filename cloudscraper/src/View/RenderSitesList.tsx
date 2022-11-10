@@ -5,12 +5,12 @@ export function RenderSitesList(props: IRenderSitesList) {
     let _columns: IColumn[];
 
         _columns = [
-            { key: 'column1', name: 'Name', fieldName: 'SiteName', minWidth: 100, maxWidth: 300, isResizable: true,},
-            { key: 'column2', name: 'URL', fieldName: 'Url', minWidth: 100, maxWidth: 350, isResizable: true},
-            { key: 'column3', name: 'Owner', fieldName: 'SiteOwner', minWidth: 150, maxWidth: 200, isResizable: true},
-            { key: 'column4', name: 'Description', fieldName: 'Description', minWidth: 150, maxWidth: 350, isResizable: true},
-            { key: 'column5', name: 'Date Modified', fieldName: 'DateModified', minWidth: 100, maxWidth: 300, isResizable: true},
-            { key: 'column6', name: 'Date Created', fieldName: 'DateCreated', minWidth: 100, maxWidth: 350, isResizable: true}
+            { key: 'displayName', name: 'Name', fieldName: 'SiteName', minWidth: 100, maxWidth: 300, isResizable: true, onColumnClick: Sort},
+            { key: 'webUrl', name: 'URL', fieldName: 'Url', minWidth: 100, maxWidth: 350, isResizable: true, onColumnClick: Sort},
+            { key: '', name: 'Owner', fieldName: 'SiteOwner', minWidth: 150, maxWidth: 200, isResizable: true, onColumnClick: Sort},
+            { key: 'Description', name: 'Description', fieldName: 'Description', minWidth: 150, maxWidth: 350, isResizable: true, onColumnClick: Sort},
+            { key: 'lastModifiedDateTime', name: 'Date Modified', fieldName: 'DateModified', minWidth: 100, maxWidth: 300, isResizable: true, onColumnClick: Sort},
+            { key: 'createdDateTime', name: 'Date Created', fieldName: 'DateCreated', minWidth: 100, maxWidth: 350, isResizable: true, onColumnClick: Sort}
             ];
 
         return (
@@ -25,5 +25,16 @@ export function RenderSitesList(props: IRenderSitesList) {
                 />
             </>
         )
-
+        
+    function Sort(ev: React.MouseEvent<HTMLElement>, column: IColumn): void {
+        if (column.fieldName != props.sortArg) {
+            props.setSortarg("&$orderBy=" + column.key);
+        }
+        else if (column.fieldName == props.sortArg) {
+            props.setSortarg("&$orderBy=" + column.key + " desc");
+        }
+        else {
+            props.setSortarg("");
+        }
+    }
 }

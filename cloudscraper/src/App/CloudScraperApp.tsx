@@ -18,8 +18,8 @@ export const CloudScraperApp = () => {
         <TokenFetcher setToken={setUserAccessToken}/>
         <PageLayout>
           <AuthenticatedTemplate>
-            <SearchComponents RequestSitesFunc={RequestSites} setSitesListFunc={setSitesList} userAccessToken={userAccessToken} />
-            <RenderSitesList sitesArray={sitesList} />
+            <SearchComponents RequestSitesFunc={RequestSites} sitesList={sitesList} setSitesListFunc={setSitesList} userAccessToken={userAccessToken} />
+            {/* <RenderSitesList sitesArray={sitesList} /> */}
           </AuthenticatedTemplate>
         </PageLayout>
       </div>

@@ -1,7 +1,7 @@
 import { graphConfig } from "../authConfig";
 import { ISitesArray } from "./Interfaces/ISitesArray";
 
-export async function RequestSites(setSitesList: Function, userAccessToken: string, searchArgs?: string) {
+export async function RequestSites(setSitesList: Function, userAccessToken: string, searchArgs?: string, sortArg?: string) {
     const headers = new Headers();
     const bearer = `Bearer ${userAccessToken}`;
     let skipToken = "";
@@ -11,18 +11,20 @@ export async function RequestSites(setSitesList: Function, userAccessToken: stri
 
         headers.append("Authorization", bearer);
 
+
         const options = {
             method: "GET",
             headers: headers,
+            
         };
+
         // "&$skip=" + `${skipToken}`
         var sitesList: ISitesArray[] = [];
         var graphValues: any[] = [];
-        await fetch(graphConfig.graphEndPoint + `${searchArgs}` + "&$top=" + `${amountSites}` + `${skipToken}`, options)
+        await fetch(graphConfig.graphEndPoint + searchArgs + sortArg + "&$top=" + `${amountSites}`, options)
             .then(response => response.json()
             .then((response: any) => {
                 graphValues = response.value
-                skipToken = response.value.skipToken
             }));
 
         graphValues.map((siteData) => {
