@@ -5,8 +5,10 @@ import { PublicClientApplication } from '@azure/msal-browser';
 import { MsalProvider } from '@azure/msal-react';
 import { msalConfig } from './authConfig';
 import './style.css';
+import { initializeIcons } from '@fluentui/react';
 
-const msalInstance = new PublicClientApplication(msalConfig)
+const msalInstance = new PublicClientApplication(msalConfig);
+initializeIcons();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

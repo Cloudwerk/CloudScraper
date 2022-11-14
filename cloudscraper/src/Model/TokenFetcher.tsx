@@ -17,8 +17,7 @@ export const TokenFetcher = () => {
                 account: accounts[0],
             })
             .then(authResult => {
-                appContext.appContext.userAccessToken = authResult.accessToken
-                console.log("set Token to " + authResult.accessToken);
+                appContext.appContext.userAccessToken = authResult.accessToken;
             });
     
 
