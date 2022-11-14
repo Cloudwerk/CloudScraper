@@ -1,8 +1,10 @@
 import { ConstrainMode, DetailsList, DetailsListLayoutMode, IColumn, SelectionMode } from '@fluentui/react';
-import { IRenderSitesList } from '../Model/Interfaces/IRenderSitesList';
+import { useContext } from 'react';
+import { AppContext } from '../Model/Context/AppContext';
 
-export function RenderSitesList(props: IRenderSitesList) {
+export function RenderSitesList() {
     let _columns: IColumn[];
+    const appContext = useContext(AppContext)
 
         _columns = [
             { key: 'displayName', name: 'Name', fieldName: 'SiteName', minWidth: 100, maxWidth: 300, isResizable: true, onColumnClick: Sort},
@@ -17,7 +19,7 @@ export function RenderSitesList(props: IRenderSitesList) {
             <>
                 <DetailsList
                 setKey={"key"}
-                items={props.sitesArray}
+                items={appContext.appContext.sitesList.get()}
                 columns={_columns}
                 selectionMode={SelectionMode.none}
                 layoutMode={DetailsListLayoutMode.fixedColumns}
@@ -27,14 +29,14 @@ export function RenderSitesList(props: IRenderSitesList) {
         )
         
     function Sort(ev: React.MouseEvent<HTMLElement>, column: IColumn): void {
-        if (column.fieldName != props.sortArg) {
-            props.setSortarg("&$orderBy=" + column.key);
+        if (column.fieldName !== appContext.appContext.sortArgs) {
+            appContext.appContext.sortArgs = ("&$orderBy=" + column.key);
         }
-        else if (column.fieldName == props.sortArg) {
-            props.setSortarg("&$orderBy=" + column.key + " desc");
+        else if (column.fieldName === appContext.appContext.sortArgs) {
+            appContext.appContext.sortArgs =("&$orderBy=" + column.key + " desc");
         }
         else {
-            props.setSortarg("");
+            appContext.appContext.sortArgs = ("");
         }
     }
 }

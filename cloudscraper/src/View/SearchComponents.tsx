@@ -1,14 +1,15 @@
 import { ConstrainMode, DetailsList, DetailsListLayoutMode, IColumn, PrimaryButton, SelectionMode, TextField } from "@fluentui/react";
-import React, { useState } from "react";
-import { ISearchComponents } from "../Model/Interfaces/ISearchComponents";
+import React, { useContext, useState } from "react";
+import { AppContext } from "../Model/Context/AppContext";
 import { RenderSitesList } from "./RenderSitesList";
+import { RequestSites } from "../Model/RequestSites";
 
 
-export const SearchComponents = (props: ISearchComponents) => {
+export const SearchComponents = () => {
     let searchArgs: string = "";
     let _columns: IColumn[];
     const [sortArg, setSortArg] = useState("")
-
+    const appContext = useContext(AppContext)
 
     _columns = [
         { key: 'column1', name: 'Name', fieldName: 'displayName', minWidth: 100, maxWidth: 300, isResizable: true,},
@@ -39,12 +40,12 @@ export const SearchComponents = (props: ISearchComponents) => {
                 label="RequestSitesBtn"
                 text="Load Sites"
                 onClick={async (): Promise<void> => {
-                    await props.RequestSitesFunc(props.setSitesListFunc, props.userAccessToken, searchArgs, sortArg);
+                    await RequestSites(appContext.appContext);
                 }}
             />
 
 
-            <RenderSitesList sitesArray={props.sitesList} sortArg={sortArg} setSortarg={setSortArg}/>
+            <RenderSitesList />
         </>
     )
 
