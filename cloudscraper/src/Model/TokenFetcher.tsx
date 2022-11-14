@@ -11,15 +11,16 @@ export const TokenFetcher = () => {
     const { instance, accounts } = useMsal();
     const appContext = useContext(AppContext);
 
-    instance
-            .acquireTokenSilent({
-                ...loginRequest,
-                account: accounts[0],
-            })
-            .then(authResult => {
-                appContext.appContext.userAccessToken = authResult.accessToken;
-            });
-    
+    if (appContext.appContext.userAccessToken === "") {
+        instance
+        .acquireTokenSilent({
+            ...loginRequest,
+            account: accounts[0],
+        })
+        .then(authResult => {
+            appContext.appContext.userAccessToken = authResult.accessToken;
+        });
+    }
 
     return (
         <>

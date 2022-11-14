@@ -7,6 +7,8 @@ export async function RequestSites(app: AppServices) {
     const bearer = `Bearer ${app.userAccessToken}`;
     let skipToken = "";
 
+    console.log("sort: " + app.sortArgs);
+
     const amountSites: number = 30;
 
     headers.append("Authorization", bearer);
@@ -15,7 +17,6 @@ export async function RequestSites(app: AppServices) {
     const options = {
         method: "GET",
         headers: headers,
-        
     };
 
     // "&$skip=" + `${skipToken}`
@@ -38,7 +39,7 @@ export async function RequestSites(app: AppServices) {
             })
     })
 
-        app.sitesList.set([...sitesList]);
+        app.sitesList.set(sitesList);
         console.log(sitesList);
         console.log(app.sitesList)
 }

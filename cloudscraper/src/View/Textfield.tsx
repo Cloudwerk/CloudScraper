@@ -2,7 +2,7 @@ import { TextField } from "@fluentui/react";
 import { useContext } from "react";
 import { AppContext } from "../Model/Context/AppContext";
 
-export const Searchbox = () => {
+export const Textfield = () => {
     const appContext = useContext(AppContext);
     
     return (
