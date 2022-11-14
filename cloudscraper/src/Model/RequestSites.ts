@@ -38,8 +38,7 @@ export async function RequestSites(app: AppServices) {
             })
     })
 
-        app.sitesList.set(sitesList);
+        app.sitesList = [...sitesList];
         console.log(sitesList);
         console.log(app.sitesList)
-        // setSitesList(sitesList);
 }

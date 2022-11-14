@@ -1,26 +1,32 @@
 import { useState } from "react";
 import { PageLayout } from "../View/PageLayout";
-import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
+import { AuthenticatedTemplate, UnauthenticatedTemplate, useIsAuthenticated } from "@azure/msal-react";
 import { AppServices } from "../Model/AppServices";
 import { TokenFetcher } from "../Model/TokenFetcher";
 import '../style.css'
 import { SearchComponents } from "../View/SearchComponents";
 import { AppContext } from "../Model/Context/AppContext";
-import { useObservable } from "../Model/Context/Observable";
+import { SignOutButton } from "../View/SignOutButton";
+import { SignInButton } from "../View/SignInButton";
+import { SearchBox } from "@fluentui/react";
+import { LoadSitesButton } from "../View/LoadSitesButton";
+import { RenderSitesList } from "../View/RenderSitesList";
 
 export const CloudScraperApp = () => {
   var app = new AppServices();
-  const sitesList = useObservable(app.sitesList);
+  const isAuthenticated = useIsAuthenticated();
+  
 
     return (
       <div>
         <AppContext.Provider value={{appContext: app}}>
           <TokenFetcher />
-          <PageLayout>
-            <AuthenticatedTemplate>
-              <SearchComponents />
+          { isAuthenticated ? <SignOutButton /> : <SignInButton />}
+          <AuthenticatedTemplate>
+            <SearchBox />
+            <LoadSitesButton />
+            <RenderSitesList />
           </AuthenticatedTemplate>
-          </PageLayout>
         </AppContext.Provider>
       </div>
     );
