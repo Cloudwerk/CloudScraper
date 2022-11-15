@@ -5,7 +5,7 @@ import '../style.css'
 import { AppContext } from "../Model/Context/AppContext";
 import { SignOutButton } from "../View/SignOutButton";
 import { SignInButton } from "../View/SignInButton";
-import { Textfield } from '../View/Textfield';
+import { Searchfield } from '../View/Searchfield';
 import { LoadSitesButton } from "../View/LoadSitesButton";
 import { RenderSitesList } from "../View/RenderSitesList";
 import { useObservable } from "../Model/Context/Observable";
@@ -21,7 +21,7 @@ export const CloudScraperApp = () => {
           <TokenFetcher />
           { isAuthenticated ? <SignOutButton /> : <SignInButton />}
           <AuthenticatedTemplate>
-            <Textfield />
+            <Searchfield />
             <LoadSitesButton />
             <RenderSitesList sitesList={sitesList} />
           </AuthenticatedTemplate>

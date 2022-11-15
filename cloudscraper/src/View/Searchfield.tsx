@@ -1,14 +1,15 @@
-import { TextField } from "@fluentui/react";
+import { SearchBox } from "@fluentui/react";
 import { useContext } from "react";
 import { AppContext } from "../Model/Context/AppContext";
+import { RequestSites } from "../Model/RequestSites";
 
-export const Textfield = () => {
+export const Searchfield = () => {
     const appContext = useContext(AppContext);
     
     return (
-        <TextField
+        <SearchBox
             placeholder="Search for a site..."
-            onChange={(ev: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, text?: string): void => {
+            onChange={(ev: React.ChangeEvent<HTMLInputElement> | undefined, text?: string): void => {
                 if (text) {
                     appContext.appContext.searchArgs = text as string;
                     console.log(appContext.appContext.searchArgs);
@@ -17,6 +18,11 @@ export const Textfield = () => {
                     appContext.appContext.searchArgs = "";
                     console.log("No text")
                 }
+            }}
+            onSearch={newValue => {
+                console.log(newValue);
+                appContext.appContext.searchArgs = newValue;
+                RequestSites(appContext.appContext);
             }}
         />
     );

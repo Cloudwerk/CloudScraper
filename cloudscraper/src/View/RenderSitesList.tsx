@@ -1,14 +1,12 @@
 import { ConstrainMode, DetailsList, DetailsListLayoutMode, IColumn, Link, SelectionMode } from '@fluentui/react';
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { AppContext } from '../Model/Context/AppContext';
 import { IRenderSitesListProps } from '../Model/Interfaces/IRenderSitesListProps';
 
 export const RenderSitesList = (props: IRenderSitesListProps) => {
     let _columns: IColumn[];
-    let prevColumn: IColumn;
+    let prevColumn: IColumn = {key: 'placeholder', name: 'placeholder', minWidth: 100};
     const appContext = useContext(AppContext)
-
-
 
     _columns = [
         { key: 'name', name: 'Name', fieldName: 'SiteName', minWidth: 100, maxWidth: 300, isResizable: true, onColumnClick: Sort, isSorted: false, isSortedDescending: false,},
