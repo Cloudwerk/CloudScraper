@@ -1,4 +1,4 @@
-import { ConstrainMode, DetailsList, DetailsListLayoutMode, IColumn, Link, SelectionMode } from '@fluentui/react';
+import { ConstrainMode, DetailsList, DetailsListLayoutMode, IColumn, Link, SelectionMode, getIconClassName } from '@fluentui/react';
 import { useContext } from 'react';
 import { AppContext } from '../Model/Context/AppContext';
 import { IRenderSitesListProps } from '../Model/Interfaces/IRenderSitesListProps';
@@ -7,14 +7,15 @@ export const RenderSitesList = (props: IRenderSitesListProps) => {
     let _columns: IColumn[];
     let prevColumn: IColumn = {key: 'placeholder', name: 'placeholder', minWidth: 100};
     const appContext = useContext(AppContext)
+    // const ascendantIcon = <Icon iconName='Home'></Icon>
 
     _columns = [
-        { key: 'name', name: 'Name', fieldName: 'SiteName', minWidth: 100, maxWidth: 300, isResizable: true, onColumnClick: Sort, isSorted: false, isSortedDescending: false,},
-        { key: 'webUrl', name: 'URL', fieldName: 'Url', minWidth: 100, maxWidth: 350, isResizable: true, onColumnClick: Sort, onRender: onRenderLink, isSorted: false, isSortedDescending: false}, // Add sorting properties
-        { key: '', name: 'Owner', fieldName: 'SiteOwner', minWidth: 150, maxWidth: 200, isResizable: true, onColumnClick: Sort},
-        { key: 'Description', name: 'Description', fieldName: 'Description', minWidth: 150, maxWidth: 350, isResizable: true, onColumnClick: Sort, isSorted: false, isSortedDescending: false},
-        { key: 'lastModifiedDateTime', name: 'Date Modified', fieldName: 'DateModified', minWidth: 100, maxWidth: 300, isResizable: true, onColumnClick: Sort, isSorted: false, isSortedDescending: false},
-        { key: 'createdDateTime', name: 'Date Created', fieldName: 'DateCreated', minWidth: 100, maxWidth: 350, isResizable: true, onColumnClick: Sort, isSorted: false, isSortedDescending: false}
+        { key: 'name', name: 'Name', fieldName: 'SiteName', minWidth: 100, maxWidth: 300, isResizable: true, onColumnClick: Sort, isSorted: false, isSortedDescending: false, iconName: '', showSortIconWhenUnsorted: true, sortAscendingAriaLabel: 'Ascending', },
+        { key: 'webUrl', name: 'URL', fieldName: 'Url', minWidth: 100, maxWidth: 350, isResizable: true, onColumnClick: Sort, onRender: onRenderLink, isSorted: false, isSortedDescending: false, iconName: '', showSortIconWhenUnsorted: true, sortAscendingAriaLabel: 'Ascending',},
+        { key: '', name: 'Owner', fieldName: 'SiteOwner', minWidth: 150, maxWidth: 200, isResizable: true, onColumnClick: Sort, onRender: onRenderLink, isSorted: false, isSortedDescending: false, iconName: '', showSortIconWhenUnsorted: true, sortAscendingAriaLabel: 'Ascending',},
+        { key: 'Description', name: 'Description', fieldName: 'Description', minWidth: 150, maxWidth: 350, isResizable: true, onColumnClick: Sort, isSorted: false, isSortedDescending: false, iconName: '', showSortIconWhenUnsorted: true, sortAscendingAriaLabel: 'Ascending',},
+        { key: 'lastModifiedDateTime', name: 'Date Modified', fieldName: 'DateModified', minWidth: 100, maxWidth: 300, isResizable: true, onColumnClick: Sort, isSorted: false, isSortedDescending: false, iconName: '', showSortIconWhenUnsorted: true, sortAscendingAriaLabel: 'Ascending',},
+        { key: 'createdDateTime', name: 'Date Created', fieldName: 'DateCreated', minWidth: 100, maxWidth: 350, isResizable: true, onColumnClick: Sort, isSorted: false, isSortedDescending: false, iconName: '', showSortIconWhenUnsorted: true, sortAscendingAriaLabel: 'Ascending',}
         ];
 
     return (
@@ -52,6 +53,7 @@ export const RenderSitesList = (props: IRenderSitesListProps) => {
         }
 
         console.log(appContext.appContext.sortArgs);
+        console.log(column.iconName);
     }
 
     function onRenderLink(item: any, index: any, column: any) {
