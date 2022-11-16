@@ -1,3 +1,4 @@
+import { ODataVersion } from "@microsoft/sp-http";
 import { graphConfig } from "../authConfig";
 import { AppServices } from "./AppServices";
 import { ISitesArray } from "./Interfaces/ISitesArray";
@@ -9,7 +10,7 @@ export async function RequestSites(app: AppServices) {
 
     console.log("sort: " + app.sortArgs);
 
-    const amountSites: number = 30;
+    const amountSites: number = 5;
 
     headers.append("Authorization", bearer);
 
@@ -17,6 +18,7 @@ export async function RequestSites(app: AppServices) {
     const options = {
         method: "GET",
         headers: headers,
+        
     };
 
     // "&$skip=" + `${skipToken}`
@@ -25,7 +27,8 @@ export async function RequestSites(app: AppServices) {
     await fetch(graphConfig.graphEndPoint + app.searchArgs + app.sortArgs + "&$top=" + `${amountSites}`, options)
         .then(response => response.json()
         .then((response: any) => {
-            graphValues = response.value
+            graphValues = response.value;
+            skipToken = response.options;
         }));
 
     graphValues.map((siteData) => {
@@ -40,6 +43,5 @@ export async function RequestSites(app: AppServices) {
     })
 
         app.sitesList.set(sitesList);
-        console.log(sitesList);
-        console.log(app.sitesList)
+        console.log(skipToken);
 }

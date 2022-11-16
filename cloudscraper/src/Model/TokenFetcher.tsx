@@ -1,7 +1,7 @@
 import { loginRequest } from "../authConfig";
 import { useMsal } from "@azure/msal-react";
 import { AppContext } from "./Context/AppContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { RequestSites } from "./RequestSites";
 
 export interface ITokenFetcherProps {
@@ -11,8 +11,9 @@ export interface ITokenFetcherProps {
 export const TokenFetcher = () => {
     const { instance, accounts } = useMsal();
     const appContext = useContext(AppContext);
+    const [tokenFetched, setTokenFetched] = useState<Boolean>(false);
 
-    if (appContext.appContext.userAccessToken === "") {
+    if (!tokenFetched) {
         instance
         .acquireTokenSilent({
             ...loginRequest,
@@ -21,6 +22,7 @@ export const TokenFetcher = () => {
         .then(authResult => {
             appContext.appContext.userAccessToken = authResult.accessToken;
             RequestSites(appContext.appContext);
+            setTokenFetched(true);
         });
     }
 
