@@ -2,6 +2,7 @@ import { loginRequest } from "../authConfig";
 import { useMsal } from "@azure/msal-react";
 import { AppContext } from "./Context/AppContext";
 import { useContext } from "react";
+import { RequestSites } from "./RequestSites";
 
 export interface ITokenFetcherProps {
     setToken: Function
@@ -19,6 +20,7 @@ export const TokenFetcher = () => {
         })
         .then(authResult => {
             appContext.appContext.userAccessToken = authResult.accessToken;
+            RequestSites(appContext.appContext);
         });
     }
 
