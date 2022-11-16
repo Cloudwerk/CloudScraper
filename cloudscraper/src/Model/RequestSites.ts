@@ -1,4 +1,3 @@
-import { ODataVersion } from "@microsoft/sp-http";
 import { graphConfig } from "../authConfig";
 import { AppServices } from "./AppServices";
 import { ISitesArray } from "./Interfaces/ISitesArray";
@@ -10,7 +9,7 @@ export async function RequestSites(app: AppServices) {
 
     console.log("sort: " + app.sortArgs);
 
-    const amountSites: number = 30;
+    const amountSites: number = 3;
 
     headers.append("Authorization", bearer);
 
@@ -28,7 +27,7 @@ export async function RequestSites(app: AppServices) {
         .then(response => response.json()
         .then((response: any) => {
             graphValues = response.value;
-            nextLink = response["@odata.nextLink"];
+            app.nextLink = response["@odata.nextLink"];
         }));
 
     graphValues.map((siteData) => {
@@ -43,6 +42,5 @@ export async function RequestSites(app: AppServices) {
     })
 
         app.sitesList.set(sitesList);
-        console.log(app.searchArgs);
-        console.log(app.sitesList);
+        console.log(app.nextLink);
 }

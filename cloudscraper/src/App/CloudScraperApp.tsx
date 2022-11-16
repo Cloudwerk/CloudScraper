@@ -9,6 +9,7 @@ import { LoadSitesButton } from "../View/LoadSitesButton";
 import { RenderSitesList } from "../View/RenderSitesList";
 import { useObservable } from "../Model/Context/Observable";
 import { AppContext } from "../Model/Context/AppContext";
+import { PagingButtons } from "../View/PagingButtons";
 
 const app = new AppServices();
 
@@ -24,6 +25,7 @@ export const CloudScraperApp = () => {
           <AuthenticatedTemplate>
             <Searchfield />
             <LoadSitesButton />
+            <PagingButtons />
             <RenderSitesList sitesList={sitesList} />
           </AuthenticatedTemplate>
         </AppContext.Provider>
