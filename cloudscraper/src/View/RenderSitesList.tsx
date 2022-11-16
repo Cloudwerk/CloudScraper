@@ -1,13 +1,13 @@
-import { ConstrainMode, DetailsList, DetailsListLayoutMode, IColumn, Link, SelectionMode, getIconClassName } from '@fluentui/react';
+import { ConstrainMode, DetailsList, DetailsListLayoutMode, IColumn, Link, SelectionMode } from '@fluentui/react';
 import { useContext } from 'react';
 import { AppContext } from '../Model/Context/AppContext';
 import { IRenderSitesListProps } from '../Model/Interfaces/IRenderSitesListProps';
+import { RequestSites } from '../Model/RequestSites';
 
 export const RenderSitesList = (props: IRenderSitesListProps) => {
     let _columns: IColumn[];
     let prevColumn: IColumn = {key: 'placeholder', name: 'placeholder', minWidth: 100};
-    const appContext = useContext(AppContext)
-    // const ascendantIcon = <Icon iconName='Home'></Icon>
+    const appContext = useContext(AppContext);
 
     _columns = [
         { key: 'name', name: 'Name', fieldName: 'SiteName', minWidth: 100, maxWidth: 300, isResizable: true, },
@@ -52,8 +52,9 @@ export const RenderSitesList = (props: IRenderSitesListProps) => {
             appContext.appContext.sortArgs = ("");
         }
 
+        RequestSites(appContext.appContext);
         console.log(appContext.appContext.sortArgs);
-        console.log(column.iconName);
+        console.log(column.isSorted);
     }
 
     function onRenderLink(item: any, index: any, column: any) {

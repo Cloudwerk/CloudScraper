@@ -6,11 +6,11 @@ import { ISitesArray } from "./Interfaces/ISitesArray";
 export async function RequestSites(app: AppServices) {
     const headers = new Headers();
     const bearer = `Bearer ${app.userAccessToken}`;
-    let skipToken = "";
+    let nextLink = "";
 
     console.log("sort: " + app.sortArgs);
 
-    const amountSites: number = 5;
+    const amountSites: number = 30;
 
     headers.append("Authorization", bearer);
 
@@ -28,7 +28,7 @@ export async function RequestSites(app: AppServices) {
         .then(response => response.json()
         .then((response: any) => {
             graphValues = response.value;
-            skipToken = response.options;
+            nextLink = response["@odata.nextLink"];
         }));
 
     graphValues.map((siteData) => {
@@ -43,5 +43,6 @@ export async function RequestSites(app: AppServices) {
     })
 
         app.sitesList.set(sitesList);
-        console.log(skipToken);
+        console.log(app.searchArgs);
+        console.log(app.sitesList);
 }

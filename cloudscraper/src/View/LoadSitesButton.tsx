@@ -1,5 +1,5 @@
 import { PrimaryButton } from "@fluentui/react";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AppContext } from "../Model/Context/AppContext";
 import { RequestSites } from "../Model/RequestSites";
 
