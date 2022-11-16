@@ -5,7 +5,6 @@ import { ISitesArray } from "./Interfaces/ISitesArray";
 export async function RequestSites(app: AppServices) {
     const headers = new Headers();
     const bearer = `Bearer ${app.userAccessToken}`;
-    let nextLink = "";
 
     console.log("sort: " + app.sortArgs);
 

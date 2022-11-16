@@ -1,7 +1,6 @@
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useIsAuthenticated } from "@azure/msal-react";
 import { AppServices } from "../Model/AppServices";
 import { TokenFetcher } from "../Model/TokenFetcher";
-import '../style.css'
 import { SignOutButton } from "../View/SignOutButton";
 import { SignInButton } from "../View/SignInButton";
 import { RenderSitesList } from "../View/RenderSitesList";

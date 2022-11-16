@@ -13,13 +13,17 @@ export const SearchComponents = () => {
     const stackTokens: IStackTokens = { 
         childrenGap: 10
     }
+
+    const SearchBoxToken: IStackTokens = {
+        maxWidth: 500,
+    }
     
     return (
         <Stack horizontalAlign="center" horizontal={true} tokens={stackTokens}>
-            <StackItem>
+            <StackItem tokens={SearchBoxToken}>
                 <SearchBox
                     placeholder="Search for a site..."
-                    className="SearchBox"
+                    // className="SearchBox"
                     onChange={(ev: React.ChangeEvent<HTMLInputElement> | undefined, text?: string): void => {
                         if (text) {
                             appContext.appContext.searchArgs = text as string;
