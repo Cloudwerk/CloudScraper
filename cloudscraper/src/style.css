@@ -1,7 +1,18 @@
-body {
-  padding-left: 10px;
+.Searchfield {
+  width: 300px;
+  padding-right: 10px;
 }
 
-.DisplayFlex {
-  display: flex;
+.PagingButtons {
+  display: block;
+  text-align: center;
+}
+
+.PagingButtonsDistance {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.SearchBox {
+  width: 300px
 }

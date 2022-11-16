@@ -4,12 +4,11 @@ import { TokenFetcher } from "../Model/TokenFetcher";
 import '../style.css'
 import { SignOutButton } from "../View/SignOutButton";
 import { SignInButton } from "../View/SignInButton";
-import { Searchfield } from '../View/Searchfield';
-import { LoadSitesButton } from "../View/LoadSitesButton";
 import { RenderSitesList } from "../View/RenderSitesList";
 import { useObservable } from "../Model/Context/Observable";
 import { AppContext } from "../Model/Context/AppContext";
 import { PagingButtons } from "../View/PagingButtons";
+import { SearchComponents } from "../View/SearchComponents";
 
 const app = new AppServices();
 
@@ -23,9 +22,8 @@ export const CloudScraperApp = () => {
           <TokenFetcher />
           { isAuthenticated ? <SignOutButton /> : <SignInButton />}
           <AuthenticatedTemplate>
-            <Searchfield />
-            <LoadSitesButton />
-            <PagingButtons />
+              <SearchComponents />
+              <PagingButtons />
             <RenderSitesList sitesList={sitesList} />
           </AuthenticatedTemplate>
         </AppContext.Provider>
