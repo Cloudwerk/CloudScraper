@@ -11,11 +11,11 @@ export const RenderSitesList = (props: IRenderSitesListProps) => {
 
     _columns = [
         { key: 'name', name: 'Name', fieldName: 'SiteName', minWidth: 100, maxWidth: 300, isResizable: true, },
-        { key: 'webUrl', name: 'URL', fieldName: 'Url', minWidth: 100, maxWidth: 350, isResizable: true, },
-        { key: '', name: 'Owner', fieldName: 'SiteOwner', minWidth: 150, maxWidth: 200, isResizable: true, onColumnClick: Sort, onRender: onRenderLink, isSorted: false, isSortedDescending: false, iconName: '', showSortIconWhenUnsorted: true, sortAscendingAriaLabel: 'Ascending',},
-        { key: 'Description', name: 'Description', fieldName: 'Description', minWidth: 150, maxWidth: 350, isResizable: true, onColumnClick: Sort, isSorted: false, isSortedDescending: false, iconName: '', showSortIconWhenUnsorted: true, sortAscendingAriaLabel: 'Ascending',},
-        { key: 'lastModifiedDateTime', name: 'Date Modified', fieldName: 'DateModified', minWidth: 100, maxWidth: 300, isResizable: true, onColumnClick: Sort, isSorted: false, isSortedDescending: false, iconName: '', showSortIconWhenUnsorted: true, sortAscendingAriaLabel: 'Ascending',},
-        { key: 'createdDateTime', name: 'Date Created', fieldName: 'DateCreated', minWidth: 100, maxWidth: 350, isResizable: true, onColumnClick: Sort, isSorted: false, isSortedDescending: false, iconName: '', showSortIconWhenUnsorted: true, sortAscendingAriaLabel: 'Ascending',}
+        { key: 'webUrl', name: 'URL', fieldName: 'Url', minWidth: 100, maxWidth: 350, isResizable: true, onRender: onRenderLink},
+        { key: '', name: 'Owner', fieldName: 'SiteOwner', minWidth: 150, maxWidth: 250, isResizable: true, onColumnClick: Sort, onRender: onRenderLink, isSorted: false, isSortedDescending: false, iconName: '', showSortIconWhenUnsorted: true, sortAscendingAriaLabel: 'Ascending',},
+        { key: 'description', name: 'Description', fieldName: 'Description', minWidth: 150, maxWidth: 350, isResizable: true, },
+        { key: 'lastModifiedDateTime', name: 'Date Modified', fieldName: 'DateModified', minWidth: 100, maxWidth: 200, isResizable: true, onColumnClick: Sort, isSorted: false, isSortedDescending: false, iconName: '', showSortIconWhenUnsorted: true, sortAscendingAriaLabel: 'Ascending',},
+        { key: 'createdDateTime', name: 'Date Created', fieldName: 'DateCreated', minWidth: 100, maxWidth: 200, isResizable: true, onColumnClick: Sort, isSorted: false, isSortedDescending: false, iconName: '', showSortIconWhenUnsorted: true, sortAscendingAriaLabel: 'Ascending',}
         ];
 
     return (
