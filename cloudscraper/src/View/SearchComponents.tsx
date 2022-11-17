@@ -4,10 +4,10 @@ import { AppContext } from "../Model/Context/AppContext";
 import { RequestSites } from "../Model/RequestSites";
 
 export const SearchComponents = () => {
-    const appContext = useContext(AppContext);
+    const appContext = useContext(AppContext).appContext;
 
     const LoadSites = async (): Promise<void> => {
-        await RequestSites(appContext.appContext)
+        await RequestSites(appContext)
     }
 
     const stackTokens: IStackTokens = { 
@@ -26,18 +26,18 @@ export const SearchComponents = () => {
                     // className="SearchBox"
                     onChange={(ev: React.ChangeEvent<HTMLInputElement> | undefined, text?: string): void => {
                         if (text) {
-                            appContext.appContext.searchArgs = text as string;
-                            console.log(appContext.appContext.searchArgs);
+                            appContext.searchArgs = text as string;
+                            console.log(appContext.searchArgs);
                         }
                         else {
-                            appContext.appContext.searchArgs = "";
+                            appContext.searchArgs = "";
                             console.log("No text")
                         }
                     }}
                     onSearch={newValue => {
                         console.log(newValue);
-                        appContext.appContext.searchArgs = newValue;
-                        RequestSites(appContext.appContext);
+                        appContext.searchArgs = newValue;
+                        RequestSites(appContext);
                     }}
                 />
             </StackItem>

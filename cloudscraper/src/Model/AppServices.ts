@@ -6,6 +6,5 @@ export class AppServices {
     public searchArgs: string = "";
     public sortArgs: string = "";
     public sitesList = new Observable<ISitesArray[]>([]);
-    public prevLink: string = "";
     public nextLink: string = "";
 }

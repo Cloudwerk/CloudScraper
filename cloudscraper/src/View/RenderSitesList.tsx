@@ -7,7 +7,7 @@ import { RequestSites } from '../Model/RequestSites';
 export const RenderSitesList = (props: IRenderSitesListProps) => {
     let _columns: IColumn[];
     let prevColumn: IColumn = {key: 'placeholder', name: 'placeholder', minWidth: 100};
-    const appContext = useContext(AppContext);
+    const appContext = useContext(AppContext).appContext;
 
     _columns = [
         { key: 'name', name: 'Name', fieldName: 'SiteName', minWidth: 100, maxWidth: 300, isResizable: true, },
@@ -40,20 +40,20 @@ export const RenderSitesList = (props: IRenderSitesListProps) => {
 
         if (column.isSorted === false && column.isSortedDescending === false) {
             column.isSorted = true;
-            appContext.appContext.sortArgs = ("&$orderBy=" + column.key);
+            appContext.sortArgs = ("&$orderBy=" + column.key);
         }
         else if (column.isSorted === true) {
             column.isSorted = false;
             column.isSortedDescending = true;
-            appContext.appContext.sortArgs = ("&$orderBy=" + column.key + " desc");
+            appContext.sortArgs = ("&$orderBy=" + column.key + " desc");
         }
         else if (column.isSortedDescending === true) {
             column.isSortedDescending = false;
-            appContext.appContext.sortArgs = ("");
+            appContext.sortArgs = ("");
         }
 
-        RequestSites(appContext.appContext);
-        console.log(appContext.appContext.sortArgs);
+        RequestSites(appContext);
+        console.log(appContext.sortArgs);
         console.log(column.isSorted);
     }
 
