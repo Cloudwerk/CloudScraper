@@ -6,13 +6,12 @@ import { RequestSites } from '../Model/RequestSites';
 
 export const RenderSitesList = (props: IRenderSitesListProps) => {
     let _columns: IColumn[];
-    let prevColumn: IColumn = {key: 'placeholder', name: 'placeholder', minWidth: 100};
     const appContext = useContext(AppContext).appContext;
 
     _columns = [
         { key: 'name', name: 'Name', fieldName: 'SiteName', minWidth: 200, maxWidth: 300, isResizable: true, },
         { key: 'webUrl', name: 'URL', fieldName: 'Url', minWidth: 200, maxWidth: 400, isResizable: true, onRender: onRenderLink},
-        { key: '', name: 'Owner', fieldName: 'SiteOwner', minWidth: 200, maxWidth: 250, isResizable: true, onRender: onRenderLink, isSorted: false, isSortedDescending: false, showSortIconWhenUnsorted: true, onColumnClick: Sort},
+        { key: '', name: 'Owner', fieldName: 'SiteOwner', minWidth: 100, maxWidth: 250, isResizable: true, },
         { key: 'description', name: 'Description', fieldName: 'Description', minWidth: 300, maxWidth: 350, isResizable: true, },
         { key: 'lastModifiedDateTime', name: 'Date Modified', fieldName: 'DateModified', minWidth: 150, maxWidth: 200, isResizable: true, showSortIconWhenUnsorted: true, onColumnClick: Sort, isSorted: appContext.getSorted('lastModifiedDateTime'), isSortedDescending: appContext.getSortedDesc('lastModifiedDateTime')},
         { key: 'createdDateTime', name: 'Date Created', fieldName: 'DateCreated', minWidth: 150, maxWidth: 200, isResizable: true, showSortIconWhenUnsorted: true, onColumnClick: Sort, isSorted: appContext.getSorted('createdDateTime'), isSortedDescending: appContext.getSortedDesc('createdDateTime')}

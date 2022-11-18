@@ -1,16 +1,15 @@
 import { IColumn } from "@fluentui/react";
 import { Observable } from "./Context/Observable";
 import { ISitesArray } from "./Interfaces/ISitesArray";
-import { RequestSites } from "./RequestSites";
 
 export class AppServices {
     public userAccessToken: string = "";
 
     public sitesList = new Observable<ISitesArray[]>([]);
-    public nextLink: string = "";
+    public nextLink = "";
 
-    public searchArgs: string = "&$orderBy=createdDateTime";
-    public sortArgs: string = "";
+    public searchArgs: string = "";
+    public sortArgs: string = "&$orderBy=createdDateTime";
     public isSorted: boolean = false;
     public isSortedDesc: boolean = false;
     public columnName: string = "";
@@ -20,21 +19,21 @@ export class AppServices {
             this.columnName = column.key;
             this.isSorted = true;
             this.isSortedDesc = false;
-            this.searchArgs = ("&$orderBy=" + column?.key);
+            this.sortArgs = ("&$orderBy=" + column?.key);
         }
         else if (this.columnName === column.key) {
             if (this.isSorted == false) {
                 this.isSorted = true;
-                this.searchArgs = ("&$orderBy=" + column?.key);
+                this.sortArgs = ("&$orderBy=" + column?.key);
             }
             else if (this.isSorted === true && this.isSortedDesc === false) {
                 this.isSortedDesc = true;
-                this.searchArgs = ("&$orderBy=" + column?.key + " desc");
+                this.sortArgs = ("&$orderBy=" + column?.key + " desc");
             }
             else {
                 this.isSorted = false;
                 this.isSortedDesc = false;
-                this.searchArgs = "&$orderBy=createdDateTime";
+                this.sortArgs = "&$orderBy=createdDateTime";
             }
         }
 

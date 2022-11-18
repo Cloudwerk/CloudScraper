@@ -6,7 +6,7 @@ import { SignInButton } from "../View/SignInButton";
 import { RenderSitesList } from "../View/RenderSitesList";
 import { useObservable } from "../Model/Context/Observable";
 import { AppContext } from "../Model/Context/AppContext";
-import { PagingButtons } from "../View/PagingButtons";
+import { PagingButton } from "../View/PagingButton";
 import { SearchComponents } from "../View/SearchComponents";
 
 const app = new AppServices();
@@ -21,9 +21,9 @@ export const CloudScraperApp = () => {
           <TokenFetcher />
           { isAuthenticated ? <SignOutButton /> : <SignInButton />}
           <AuthenticatedTemplate>
-              <SearchComponents />
-              <PagingButtons />
+            <SearchComponents />
             <RenderSitesList sitesList={sitesList} />
+            { (app.nextLink !== "") ? <PagingButton /> : null }
           </AuthenticatedTemplate>
         </AppContext.Provider>
       </div>
