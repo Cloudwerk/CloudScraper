@@ -19,5 +19,4 @@ export const loginRequest = {
 
 export const graphConfig = {
     graphEndPoint: "https://graph.microsoft.com/v1.0/sites?search=*"
-    // graphEndPoint: "https://graph.microsoft.com/v1.0/me"
 };

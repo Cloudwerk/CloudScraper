@@ -14,6 +14,8 @@ export async function RequestSites(app: AppServices) {
         
     };
 
+    console.log(graphConfig.graphEndPoint + app.searchArgs + app.sortArgs + "&$top=" + `${amountSites}`);
+
     var sitesList: ISitesArray[] = [];
     var graphValues: any[] = [];
     await fetch(graphConfig.graphEndPoint + app.searchArgs + app.sortArgs + "&$top=" + `${amountSites}`, options)
@@ -29,11 +31,11 @@ export async function RequestSites(app: AppServices) {
                 Url: siteData.webUrl,
                 SiteOwner: "",
                 Description: siteData.description,
-                DateModified: siteData.lastModifiedDateTime,
-                DateCreated: siteData.createdDateTime
+                DateModified: new Date(siteData.lastModifiedDateTime).toLocaleString(),
+                DateCreated: new Date(siteData.createdDateTime).toLocaleString()
             })
     })
 
         app.sitesList.set(sitesList);
-        console.log(app.nextLink);
+        console.log("nextLink: " + app.nextLink);
 }
