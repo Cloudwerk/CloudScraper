@@ -42,5 +42,13 @@ export class AppServices {
         column.isSortedDescending = this.isSortedDesc;
     }
 
+    public getSorted(columnName: string): boolean {
+        return (columnName === this.columnName) ? this.isSorted : false;  
+    }
+
+    public getSortedDesc(columnName: string): boolean {
+        return (columnName === this.columnName) ? this.isSortedDesc : false;
+    }
+
     // this.searchArgs = ("&$orderBy=" + column?.key);
 }
