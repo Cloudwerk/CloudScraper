@@ -23,7 +23,7 @@ export class AppServices {
             this.sortArgs = ("&$orderBy=" + column?.key);
         }
         else if (this.columnName === column.key) {
-            if (this.isSorted == false) {
+            if (this.isSorted === false) {
                 this.isSorted = true;
                 this.sortArgs = ("&$orderBy=" + column?.key);
             }

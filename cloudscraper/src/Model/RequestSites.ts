@@ -1,6 +1,5 @@
 import { graphConfig } from "../authConfig";
 import { AppServices } from "./AppServices";
-import { AppContext } from "./Context/AppContext";
 import { ISitesArray } from "./Interfaces/ISitesArray";
 
 // Used for normal search + sorting
