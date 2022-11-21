@@ -3,10 +3,11 @@ import { Observable } from "./Context/Observable";
 import { ISitesArray } from "./Interfaces/ISitesArray";
 
 export class AppServices {
-    public userAccessToken: string = "";
+    public userAccessToken: string = ""; 
 
-    public sitesList = new Observable<ISitesArray[]>([]);
-    public nextLink = "";
+    public sitesList = new Observable<ISitesArray[]>([]); // Observable to track changes
+    public nextLink: string = ""; // Link to load further results if there are any
+    public loadCounter: number = 1; // Track how many more pages were loaded, used for sorting
 
     public searchArgs: string = "";
     public sortArgs: string = "&$orderBy=createdDateTime";
@@ -48,6 +49,4 @@ export class AppServices {
     public getSortedDesc(columnName: string): boolean {
         return (columnName === this.columnName) ? this.isSortedDesc : false;
     }
-
-    // this.searchArgs = ("&$orderBy=" + column?.key);
 }

@@ -3,10 +3,11 @@ import { AppServices } from "./AppServices";
 import { AppContext } from "./Context/AppContext";
 import { ISitesArray } from "./Interfaces/ISitesArray";
 
-export async function RequestSites(app: AppServices) {
+// Used for normal search + sorting
+export async function RequestSites(app: AppServices, keepCount?: boolean) {
     const headers = new Headers();
     const bearer = `Bearer ${app.userAccessToken}`;
-    const amountSites: number = 3;
+    const amountSites: number = 5;
 
     headers.append("Authorization", bearer);
     const options = {
@@ -14,16 +15,22 @@ export async function RequestSites(app: AppServices) {
         headers: headers,
     };
 
+    if (keepCount !== true) {
+        app.loadCounter = 1;
+    }
+
     var sitesList: ISitesArray[] = [];
     var graphValues: any[] = [];
 
-    await fetch(graphConfig.graphEndPoint + app.searchArgs + app.sortArgs + "&$top=" + `${amountSites}`, options)
+    await fetch(graphConfig.graphEndPoint + app.searchArgs + app.sortArgs + "&$top=" + `${amountSites * app.loadCounter}`, options)
         .then(response => response.json()
         .then((response: any) => {
             graphValues = response.value;
             if (response["@odata.nextLink"]) {
                 app.nextLink = response["@odata.nextLink"];
-            };
+            } else {
+                app.nextLink = "";
+            }
         }));
 
     graphValues.map((siteData) => {
@@ -41,10 +48,12 @@ export async function RequestSites(app: AppServices) {
         console.log("nextLink: " + app.nextLink);
 }
 
+// Used for paging only, uses nextLink from AppServices
 export async function RequestMoreSites(app: AppServices) {
+    app.loadCounter++;
+
     const headers = new Headers();
     const bearer = `Bearer ${app.userAccessToken}`;
-    const amountSites: number = 3;
 
     headers.append("Authorization", bearer);
     const options = {
@@ -61,7 +70,9 @@ export async function RequestMoreSites(app: AppServices) {
             graphValues = response.value;
             if (response["@odata.nextLink"]) {
                 app.nextLink = response["@odata.nextLink"];
-            };
+            } else {
+                app.nextLink = "";
+            }
         }));
 
     graphValues.map((siteData) => {

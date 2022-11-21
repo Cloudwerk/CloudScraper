@@ -32,7 +32,7 @@ export const RenderSitesList = (props: IRenderSitesListProps) => {
         
     function Sort(ev: React.MouseEvent<HTMLElement>, column: IColumn): void {
         appContext.onSortChanged(column);
-        RequestSites(appContext);
+        RequestSites(appContext, true);
     }
 
     function onRenderLink(item: any, index: any, column: any) {
