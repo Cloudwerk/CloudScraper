@@ -1,0 +1,16 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "version": "1.15.2",
+    "libraryName": "cloudscraper-webpart",
+    "libraryId": "4d28786a-8b0e-408a-bf1c-437fac7961e6",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "cloudscraper-webpart",
+    "solutionShortDescription": "cloudscraper-webpart description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}
