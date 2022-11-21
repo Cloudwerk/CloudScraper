@@ -2,6 +2,7 @@ import * as React from 'react';
 import styles from './CloudscraperWebpart.module.scss';
 import { ICloudscraperWebpartProps } from './ICloudscraperWebpartProps';
 import { escape } from '@microsoft/sp-lodash-subset';
+import CloudScraperApp from "cloudscraper";
 
 export default class CloudscraperWebpart extends React.Component<ICloudscraperWebpartProps, {}> {
   public render(): React.ReactElement<ICloudscraperWebpartProps> {
