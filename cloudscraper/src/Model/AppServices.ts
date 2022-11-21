@@ -1,4 +1,4 @@
-import { IColumn } from "@fluentui/react";
+import { IColumn } from "@fluentui/react/lib/DetailsList";
 import { Observable } from "./Context/Observable";
 import { ISitesArray } from "./Interfaces/ISitesArray";
 

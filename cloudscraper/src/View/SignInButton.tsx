@@ -2,7 +2,6 @@ import { useMsal } from "@azure/msal-react";
 import { loginRequest } from "../authConfig";
 import { PrimaryButton } from "@fluentui/react";
 
-
 export const SignInButton = () => {
     const { instance } = useMsal();
 

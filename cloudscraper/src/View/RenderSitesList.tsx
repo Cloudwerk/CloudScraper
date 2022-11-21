@@ -1,4 +1,6 @@
-import { ConstrainMode, DetailsList, DetailsListLayoutMode, IColumn, Link, SelectionMode } from '@fluentui/react';
+// import { ConstrainMode, DetailsList, DetailsListLayoutMode, IColumn, Link, SelectionMode } from '@fluentui/react';
+import { IColumn } from '@fluentui/react/lib/components/DetailsList/DetailsList.types';
+import { DetailsList, SelectionMode, DetailsListLayoutMode, ConstrainMode, Link } from '@fluentui/react';
 import { useContext } from 'react';
 import { AppContext } from '../Model/Context/AppContext';
 import { IRenderSitesListProps } from '../Model/Interfaces/IRenderSitesListProps';

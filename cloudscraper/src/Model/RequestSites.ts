@@ -18,8 +18,8 @@ export async function RequestSites(app: AppServices, keepCount?: boolean) {
         app.loadCounter = 1;
     }
 
-    var sitesList: ISitesArray[] = [];
-    var graphValues: any[] = [];
+    let sitesList: ISitesArray[] = [];
+    let graphValues: any[] = [];
 
     await fetch(graphConfig.graphEndPoint + app.searchArgs + app.sortArgs + "&$top=" + `${amountSites * app.loadCounter}`, options)
         .then(response => response.json()

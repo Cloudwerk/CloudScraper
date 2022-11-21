@@ -1,4 +1,5 @@
-import { DefaultButton, IStackTokens, Stack, StackItem } from "@fluentui/react"
+import { StackItem, Stack, DefaultButton } from "@fluentui/react";
+import { IStackTokens } from "@fluentui/react/lib/components/Stack/Stack.types";
 import { useContext } from "react";
 import { AppContext } from "../Model/Context/AppContext";
 import { RequestMoreSites } from "../Model/RequestSites";
@@ -14,7 +15,7 @@ export const PagingButton = () => {
         <Stack horizontal={true} horizontalAlign="center" tokens={stackTokens}>
             <StackItem align="center">
                 <DefaultButton
-                text="Load more sites"
+                text="Load More Sites"
                 onClick={() => {
                     RequestMoreSites(appContext)
                 }}

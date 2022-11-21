@@ -1,4 +1,5 @@
-import { IStackTokens, PrimaryButton, SearchBox, Stack, StackItem } from "@fluentui/react";
+import { PrimaryButton, SearchBox, Stack, StackItem } from "@fluentui/react";
+import { IStackTokens } from "@fluentui/react/lib/components/Stack/Stack.types";
 import { useContext } from "react";
 import { AppContext } from "../Model/Context/AppContext";
 import { RequestSites } from "../Model/RequestSites";
@@ -33,7 +34,7 @@ export const SearchComponents = () => {
                     }}
                     onSearch={newValue => {
                         console.log(newValue);
-                        appContext.searchArgs = newValue;
+                        appContext.searchArgs = newValue; // Kann eventuell weggelassen werden?
                         RequestSites(appContext);
                     }}
                 />

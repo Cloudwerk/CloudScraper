@@ -1,4 +1,4 @@
-import { AuthenticatedTemplate, UnauthenticatedTemplate, useIsAuthenticated } from "@azure/msal-react";
+import { AuthenticatedTemplate, useIsAuthenticated } from "@azure/msal-react";
 import { AppServices } from "../Model/AppServices";
 import { TokenFetcher } from "../Model/TokenFetcher";
 import { SignOutButton } from "../View/SignOutButton";
@@ -9,21 +9,21 @@ import { AppContext } from "../Model/Context/AppContext";
 import { PagingButton } from "../View/PagingButton";
 import { SearchComponents } from "../View/SearchComponents";
 
-const app = new AppServices();
+const appServices = new AppServices();
 
 export const CloudScraperApp = () => {
   const isAuthenticated = useIsAuthenticated();
-  const sitesList = useObservable(app.sitesList);
+  const sitesList = useObservable(appServices.sitesList);
   
     return (
       <div>
-        <AppContext.Provider value={{appContext: app}}>
+        <AppContext.Provider value={{appContext: appServices}}>
           <TokenFetcher />
           { isAuthenticated ? <SignOutButton /> : <SignInButton />}
           <AuthenticatedTemplate>
             <SearchComponents />
             <RenderSitesList sitesList={sitesList} />
-            { (app.nextLink !== "") ? <PagingButton /> : null }
+            { (appServices.nextLink !== "") ? <PagingButton /> : null }
           </AuthenticatedTemplate>
         </AppContext.Provider>
       </div>
