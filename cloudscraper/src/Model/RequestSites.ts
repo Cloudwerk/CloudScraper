@@ -3,9 +3,9 @@ import { AppServices } from "./AppServices";
 import { ISitesArray } from "./Interfaces/ISitesArray";
 
 // Used for normal search + sorting
-export async function RequestSites(app: AppServices, keepCount?: boolean) {
+export async function RequestSites(appServices: AppServices, keepCount?: boolean) {
     const headers = new Headers();
-    const bearer = `Bearer ${app.userAccessToken}`;
+    const bearer = `Bearer ${appServices.userAccessToken}`;
     const amountSites: number = 5;
 
     headers.append("Authorization", bearer);
@@ -15,20 +15,20 @@ export async function RequestSites(app: AppServices, keepCount?: boolean) {
     };
 
     if (keepCount !== true) {
-        app.loadCounter = 1;
+        appServices.loadCounter = 1;
     }
 
     let sitesList: ISitesArray[] = [];
     let graphValues: any[] = [];
 
-    await fetch(graphConfig.graphEndPoint + app.searchArgs + app.sortArgs + "&$top=" + `${amountSites * app.loadCounter}`, options)
+    await fetch(graphConfig.graphEndPoint + appServices.searchArgs + appServices.sortArgs + "&$top=" + `${amountSites * appServices.loadCounter}`, options)
         .then(response => response.json()
         .then((response: any) => {
             graphValues = response.value;
             if (response["@odata.nextLink"]) {
-                app.nextLink = response["@odata.nextLink"];
+                appServices.nextLink = response["@odata.nextLink"];
             } else {
-                app.nextLink = "";
+                appServices.nextLink = "";
             }
         }));
 
@@ -43,8 +43,8 @@ export async function RequestSites(app: AppServices, keepCount?: boolean) {
             })
     })
 
-        app.sitesList.set(sitesList);
-        console.log("nextLink: " + app.nextLink);
+        appServices.sitesList.set(sitesList);
+        console.log("nextLink: " + appServices.nextLink);
 }
 
 // Used for paging only, uses nextLink from AppServices
