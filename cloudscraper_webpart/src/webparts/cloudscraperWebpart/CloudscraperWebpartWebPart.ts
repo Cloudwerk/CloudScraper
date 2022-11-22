@@ -9,7 +9,7 @@ import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import { IReadonlyTheme } from '@microsoft/sp-component-base';
 
 import * as strings from 'CloudscraperWebpartWebPartStrings';
-import { CloudscraperWebpart } from './components/CloudscraperWebpart';
+import CloudscraperWebpart from './components/CloudscraperWebpart';
 import { ICloudscraperWebpartProps } from './components/ICloudscraperWebpartProps';
 
 export interface ICloudscraperWebpartWebPartProps {

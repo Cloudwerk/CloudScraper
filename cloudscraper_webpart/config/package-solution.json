@@ -2,7 +2,7 @@
   "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
   "solution": {
     "name": "cloudscraper-webpart-client-side-solution",
-    "id": "4d28786a-8b0e-408a-bf1c-437fac7961e6",
+    "id": "20d48021-42bd-4f4e-b059-1b27acb3a144",
     "version": "1.0.0.0",
     "includeClientSideAssets": true,
     "skipFeatureDeployment": true,
@@ -29,7 +29,7 @@
       {
         "title": "cloudscraper-webpart Feature",
         "description": "The feature that activates elements of the cloudscraper-webpart solution.",
-        "id": "6d9910b2-f229-461a-adb1-525e6068c22f",
+        "id": "e9f4cfe5-98c6-43c6-b7e3-f5f64f624c00",
         "version": "1.0.0.0"
       }
     ]
