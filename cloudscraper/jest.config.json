@@ -1,0 +1,20 @@
+{
+    "moduleFileExtensions": [
+        "ts",
+        "tsx",
+        "js",
+        "json"
+    ],
+    "moduleNameMapper": {
+        "\\.(css|scss)$": "identity-obj-proxy",
+        "^resx-strings/en-us.json": "<rootdir>/node_modules/@microsoft/sp-core-library/lub/resx-strings/en-us.json"
+    },
+    "rootDir": "./src",
+    "testURL": "http://localhost:3000",
+    "testMatch": [
+        "**/src/**/*.test.+(ts|tsx|js)"
+    ],
+    "transform": {
+        "^.+\\.(ts|tsx)$": "ts-jest"
+    }
+}
