@@ -32,20 +32,12 @@ export async function RequestSites(appServices: AppServices, keepCount?: boolean
             }
         }));
 
-    graphValues.map((siteData) => {
-            sitesList.push({
-                SiteName: siteData.displayName,
-                Url: siteData.webUrl,
-                SiteOwner: "",
-                Description: siteData.description,
-                DateModified: new Date(siteData.lastModifiedDateTime).toLocaleString(),
-                DateCreated: new Date(siteData.createdDateTime).toLocaleString()
-            })
-    })
+    sitesList = decodeJSON(graphValues);
 
-        appServices.sitesList.set(sitesList);
-        console.log("nextLink: " + appServices.nextLink);
+    appServices.sitesList.set(sitesList);
+    console.log("nextLink: " + appServices.nextLink);
 }
+
 
 // Used for paging only, uses nextLink from AppServices
 export async function RequestMoreSites(app: AppServices) {
@@ -74,16 +66,27 @@ export async function RequestMoreSites(app: AppServices) {
             }
         }));
 
-    graphValues.map((siteData) => {
-            sitesList.push({
-                SiteName: siteData.displayName,
-                Url: siteData.webUrl,
-                SiteOwner: "",
-                Description: siteData.description,
-                DateModified: new Date(siteData.lastModifiedDateTime).toLocaleString(),
-                DateCreated: new Date(siteData.createdDateTime).toLocaleString()
-            })
+    decodeJSON(graphValues).forEach((site) => {
+        sitesList.push(site);
     })
-        app.sitesList.set(sitesList);
-        console.log("nextLink: " + app.nextLink);
+
+    app.sitesList.set(sitesList);
+    console.log("nextLink: " + app.nextLink);
+}
+
+export function decodeJSON(graphValues: any[]): ISitesArray[] {
+    let sitesList: ISitesArray[] = [];
+
+    graphValues.map((siteData) => {
+        sitesList.push({
+            SiteName: siteData.displayName,
+            Url: siteData.webUrl,
+            SiteOwner: "",
+            Description: siteData.description,
+            DateModified: new Date(siteData.lastModifiedDateTime).toLocaleString(),
+            DateCreated: new Date(siteData.createdDateTime).toLocaleString()
+        })
+    });
+
+    return sitesList;
 }

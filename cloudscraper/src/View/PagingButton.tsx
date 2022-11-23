@@ -1,5 +1,6 @@
 import { StackItem, Stack, DefaultButton } from "@fluentui/react";
 import { IStackTokens } from "@fluentui/react/lib/components/Stack/Stack.types";
+import React from "react";
 import { useContext } from "react";
 import { AppContext } from "../Model/Context/AppContext";
 import { RequestMoreSites } from "../Model/RequestSites";

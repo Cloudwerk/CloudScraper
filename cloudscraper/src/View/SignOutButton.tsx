@@ -1,5 +1,6 @@
 import { useMsal } from "@azure/msal-react";
 import { PrimaryButton } from "@fluentui/react";
+import React from "react";
 
 export const SignOutButton = () => {
     const { instance } = useMsal();

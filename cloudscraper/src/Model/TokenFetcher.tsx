@@ -1,3 +1,4 @@
+import React from "react";
 import { loginRequest } from "../authConfig";
 import { useMsal } from "@azure/msal-react/";
 import { AppContext } from "./Context/AppContext";
