@@ -20,7 +20,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build:lib": "webpack --config ./webpack.config.js --mode production",
+    "build:lib:prod": "webpack --config ./webpack.config.js --mode production",
+    "build:lib:dev": "webpack --config ./webpack.config.js --mode development",
     "build:webapp": "react-scripts build",
     "test": "jest --config ./jest.config.json",
     "eject": "react-scripts eject"
@@ -42,5 +43,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "exports": {
+    "Test": "./dist/bundle.tsx"
   }
 }

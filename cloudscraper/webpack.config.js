@@ -8,7 +8,10 @@ module.exports = {
             '.tsx', 
             '.js', 
             '.jsx',
-        ]
+        ],
+        alias: {
+            SearchComponent: path.resolve(__dirname, 'src/View/SearchComponents.tsx')
+        },
     },
     module: {
         rules: [{
@@ -18,12 +21,7 @@ module.exports = {
             }]
     },
     output: {
-        filename: 'bundle.js',
+        filename: 'bundle.tsx',
         path: path.resolve(__dirname, 'dist'),
     },
-    // resolve: {
-    //     alias: {
-    //         SearchComponents: path.resolve(__dirname, 'src/View/SearchComponents/'),
-    //     }
-    // }
 };

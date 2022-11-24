@@ -14,11 +14,11 @@
     "@microsoft/sp-office-ui-fabric-core": "1.15.2",
     "@microsoft/sp-property-pane": "1.15.2",
     "@microsoft/sp-webpart-base": "1.15.2",
-    "cloudscraper": "file:../cloudscraper",
     "office-ui-fabric-react": "7.185.7",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "tslib": "2.3.1"
+    "tslib": "2.3.1",
+    "cloudscraper": "file:../cloudscraper"
   },
   "devDependencies": {
     "@microsoft/eslint-config-spfx": "1.15.2",
