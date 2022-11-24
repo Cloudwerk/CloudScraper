@@ -2,11 +2,11 @@ import { graphConfig } from "../authConfig";
 import { AppServices } from "./AppServices";
 import { ISitesArray } from "./Interfaces/ISitesArray";
 
+
 // Used for normal search + sorting
 export async function RequestSites(appServices: AppServices, keepCount?: boolean) {
     const headers = new Headers();
     const bearer = `Bearer ${appServices.userAccessToken}`;
-    const amountSites: number = 5;
 
     headers.append("Authorization", bearer);
     const options = {
@@ -21,7 +21,7 @@ export async function RequestSites(appServices: AppServices, keepCount?: boolean
     let sitesList: ISitesArray[] = [];
     let graphValues: any[] = [];
 
-    await fetch(graphConfig.graphEndPoint + appServices.searchArgs + appServices.sortArgs + "&$top=" + `${amountSites * appServices.loadCounter}`, options)
+    await fetch(graphConfig.graphEndPoint + appServices.searchArgs + appServices.sortArgs + "&$top=" + `${appServices.amountSites * appServices.loadCounter}`, options)
         .then(response => response.json()
         .then((response: any) => {
             graphValues = response.value;
@@ -52,8 +52,8 @@ export async function RequestMoreSites(app: AppServices) {
         headers: headers,
     };
 
-    var sitesList: ISitesArray[] = [...app.sitesList.get()];
-    var graphValues: any[] = [];
+    let sitesList: ISitesArray[] = [...app.sitesList.get()];
+    let graphValues: any[] = [];
 
     await fetch(app.nextLink, options)
         .then(response => response.json()
