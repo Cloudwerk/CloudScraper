@@ -1,0 +1,1 @@
+export { SearchComponents } from '../src/View/SearchComponents';
