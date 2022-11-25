@@ -24,7 +24,7 @@
     "build:lib:prod": "webpack --config ./webpack.config.js --mode production",
     "build:lib:dev": "webpack --config ./webpack.config.js --mode development",
     "build:webapp": "react-scripts build",
-    "test": "jest --config ./jest.config.json",
+    "test": "jest --config ./jest.config.json --watchAll",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
