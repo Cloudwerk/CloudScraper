@@ -24,7 +24,7 @@ export class AppServices {
             this.sortArgs = ("&$orderBy=" + column?.key);
         }
         else if (this.columnName === column.key) {
-            if (this.isSorted === false) {
+            if (this.isSorted === false && this.isSortedDesc === false) {
                 this.isSorted = true;
                 this.sortArgs = ("&$orderBy=" + column?.key);
             }
@@ -32,10 +32,13 @@ export class AppServices {
                 this.isSortedDesc = true;
                 this.sortArgs = ("&$orderBy=" + column?.key + " desc");
             }
-            else {
+            else if (this.isSorted === true && this.isSortedDesc === true) {
                 this.isSorted = false;
                 this.isSortedDesc = false;
                 this.sortArgs = "&$orderBy=createdDateTime";
+            }
+            else {
+                return;
             }
         }
 

@@ -4,7 +4,6 @@ import { graphConfig } from '../authConfig';
 import { AppServices } from './AppServices';
 import graphResponseMockData from './mockData';
 import { decodeJSON } from './RequestSites';
-import fetch from 'node-fetch';
 
 test('compare array length before and after json decoding', () => {
     const prevAmount: number = graphResponseMockData.length;
