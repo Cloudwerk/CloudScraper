@@ -9,10 +9,6 @@ import * as msTeams from '@microsoft/teams-js';
 import { useTeams } from "msteams-react-base-component";
 import { useEffect } from "react";
 
-export interface ITokenFetcherProps {
-    setToken: Function
-}
-
 export const TokenFetcher = () => {
     const appContext = useContext(AppContext).appContext;
     const [{ inTeams }] = useTeams();
@@ -22,6 +18,7 @@ export const TokenFetcher = () => {
         if (inTeams === true) {
             msTeams.app.initialize();
             let authTokenRequest = {
+                resources: ["api://cloudscraper-fa5aa203-252e-40d0-be4d-3ac69c015e83"],
                 claims: loginRequest.scopes,
                 silent: false
             };
@@ -29,6 +26,10 @@ export const TokenFetcher = () => {
             let accessToken = msTeams.authentication.getAuthToken(authTokenRequest);
             console.log("accessToken values: " + accessToken);
             appContext.userAccessToken = accessToken.toString();
+            console.log("in Teams!");
+        }
+        else {
+            console.log("Not in Teams");
         }
 
         if (error instanceof InteractionRequiredAuthError) {
