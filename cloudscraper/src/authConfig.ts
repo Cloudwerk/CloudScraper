@@ -22,3 +22,6 @@ export const graphConfig = {
 };
 
 // https://cloudscraper.z6.web.core.windows.net/
+
+// value u6K8Q~J3D6bshSAS_yaPXvCW_47deL.m_GyCJaHY
+// secret id a0d1527e-720d-4cbd-984b-a500dd30fb95
