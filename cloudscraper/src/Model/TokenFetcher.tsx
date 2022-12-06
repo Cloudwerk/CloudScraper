@@ -1,6 +1,6 @@
 import React from "react";
 import { loginRequest } from "../authConfig";
-import { useMsalAuthentication, useMsal } from "@azure/msal-react/";
+import { useMsalAuthentication, } from "@azure/msal-react/";
 import { InteractionType, InteractionRequiredAuthError } from '@azure/msal-browser';
 import { AppContext } from "./Context/AppContext";
 import { useContext } from "react";

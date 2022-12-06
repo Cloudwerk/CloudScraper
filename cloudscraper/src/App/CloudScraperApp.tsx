@@ -21,9 +21,11 @@ export const CloudScraperApp = () => {
         <AppContext.Provider value={{appContext: appServices}}>
           <TokenFetcher />
           { isAuthenticated ? <SignOutButton /> : <SignInButton /> }
-            <SearchComponents />
+          <AuthenticatedTemplate>
+          <SearchComponents />
             <RenderSitesList sitesList={sitesList} />
             { (appServices.nextLink !== "") ? <PagingButton /> : null }
+          </AuthenticatedTemplate>
         </AppContext.Provider>
       </div>
     );
