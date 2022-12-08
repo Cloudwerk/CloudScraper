@@ -22,7 +22,7 @@ export const CloudScraperApp = () => {
           <TokenFetcher />
           { isAuthenticated ? <SignOutButton /> : <SignInButton /> }
           <AuthenticatedTemplate>
-          <SearchComponents />
+            <SearchComponents />
             <RenderSitesList sitesList={sitesList} />
             { (appServices.nextLink !== "") ? <PagingButton /> : null }
           </AuthenticatedTemplate>

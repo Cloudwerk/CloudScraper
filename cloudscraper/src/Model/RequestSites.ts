@@ -21,6 +21,7 @@ export async function RequestSites(appServices: AppServices, keepCount?: boolean
     let sitesList: ISitesArray[] = [];
     let graphValues: any[] = [];
 
+    console.log(graphConfig.graphEndPoint + appServices.searchArgs + appServices.sortArgs + "&$top=" + `${appServices.amountSites * appServices.loadCounter}`)
     await fetch(graphConfig.graphEndPoint + appServices.searchArgs + appServices.sortArgs + "&$top=" + `${appServices.amountSites * appServices.loadCounter}`, options)
         .then(response => response.json()
         .then((response: any) => {
@@ -40,11 +41,11 @@ export async function RequestSites(appServices: AppServices, keepCount?: boolean
 
 
 // Used for paging only, uses nextLink from AppServices
-export async function RequestMoreSites(app: AppServices) {
-    app.loadCounter++;
+export async function RequestMoreSites(appServices: AppServices) {
+    appServices.loadCounter++;
 
     const headers = new Headers();
-    const bearer = `Bearer ${app.userAccessToken}`;
+    const bearer = `Bearer ${appServices.userAccessToken}`;
 
     headers.append("Authorization", bearer);
     const options = {
@@ -52,17 +53,18 @@ export async function RequestMoreSites(app: AppServices) {
         headers: headers,
     };
 
-    let sitesList: ISitesArray[] = [...app.sitesList.get()];
+    let sitesList: ISitesArray[] = [...appServices.sitesList.get()];
     let graphValues: any[] = [];
 
-    await fetch(app.nextLink, options)
+    console.log(graphConfig.graphEndPoint + appServices.searchArgs + appServices.sortArgs + "&$top=" + `${appServices.amountSites * appServices.loadCounter}`)
+    await fetch(appServices.nextLink, options)
         .then(response => response.json()
         .then((response: any) => {
             graphValues = response.value;
             if (response["@odata.nextLink"]) {
-                app.nextLink = response["@odata.nextLink"];
+                appServices.nextLink = response["@odata.nextLink"];
             } else {
-                app.nextLink = "";
+                appServices.nextLink = "";
             }
         }));
 
@@ -70,8 +72,8 @@ export async function RequestMoreSites(app: AppServices) {
         sitesList.push(site);
     })
 
-    app.sitesList.set(sitesList);
-    console.log("nextLink: " + app.nextLink);
+    appServices.sitesList.set(sitesList);
+    console.log("nextLink: " + appServices.nextLink);
 }
 
 export function decodeJSON(graphValues: any[]): ISitesArray[] {

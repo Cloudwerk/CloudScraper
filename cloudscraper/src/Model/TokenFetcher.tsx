@@ -17,8 +17,9 @@ export const TokenFetcher = () => {
         };
 
         if (result) {
-            appContext.userAccessToken = result.accessToken
-            RequestSites(appContext)
+            appContext.userAccessToken = result.accessToken;
+            console.log("accessToken:" + result.accessToken);
+            RequestSites(appContext);
         }
     }, [error, result]);
 
