@@ -9,27 +9,28 @@ import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import { IReadonlyTheme } from '@microsoft/sp-component-base';
 
 import * as strings from 'CloudscraperWebpartWebPartStrings';
-import CloudscraperWebpart from './components/CloudscraperWebpart';
-import { ICloudscraperWebpartProps } from './components/ICloudscraperWebpartProps';
+import { CloudScraper } from './cloudscraper/App/CloudScraper';
+import { ICloudscraperWebpartProps } from './cloudscraper/ICloudscraperWebpartProps';
+import { GraphFI } from '@pnp/graph';
+import { getGraph } from '../../pnp-preset';
+import { AppServices } from './cloudscraper/Model/AppServices';
+import { TooltipHost } from 'office-ui-fabric-react';
 
 export interface ICloudscraperWebpartWebPartProps {
   description: string;
 }
 
 export default class CloudscraperWebpartWebPart extends BaseClientSideWebPart<ICloudscraperWebpartWebPartProps> {
-
+  private appServices: AppServices = new AppServices;
+  private graphClient: GraphFI;
   private _isDarkTheme: boolean = false;
   private _environmentMessage: string = '';
 
   public render(): void {
     const element: React.ReactElement<ICloudscraperWebpartProps> = React.createElement(
-      CloudscraperWebpart,
+      CloudScraper,
       {
-        description: this.properties.description,
-        isDarkTheme: this._isDarkTheme,
-        environmentMessage: this._environmentMessage,
-        hasTeamsContext: !!this.context.sdks.microsoftTeams,
-        userDisplayName: this.context.pageContext.user.displayName
+        appServices: this.appServices
       }
     );
 
@@ -38,6 +39,8 @@ export default class CloudscraperWebpartWebPart extends BaseClientSideWebPart<IC
 
   protected onInit(): Promise<void> {
     this._environmentMessage = this._getEnvironmentMessage();
+    this.graphClient = getGraph(this.context);
+    this.appServices.graphClient = this.graphClient;
 
     return super.onInit();
   }
