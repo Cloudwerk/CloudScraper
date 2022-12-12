@@ -30,7 +30,7 @@ export const SearchComponents = () => {
                             appContext.searchArgs = text as string;
                         }
                         else {
-                            appContext.searchArgs = "";
+                            appContext.searchArgs = "*";
                         }
                     }}
                     onSearch={newValue => {

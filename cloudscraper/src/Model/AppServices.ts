@@ -10,7 +10,7 @@ export class AppServices {
     public amountSites: number = 5; // Set the number of sites that should be loaded at a time
     public loadCounter: number = 1; // Track how many more pages were loaded, used for sorting
 
-    public searchArgs: string = "";
+    public searchArgs: string = "*";
     public sortArgs: string = "&$orderBy=createdDateTime";
     public isSorted: boolean = false;
     public isSortedDesc: boolean = false;

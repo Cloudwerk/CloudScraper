@@ -1,7 +1,6 @@
 import 'jest';
 import { IColumn } from '@fluentui/react'
 import { AppServices } from '../Model/AppServices';
-import { app } from '@microsoft/teams-js';
 
 test('check if sorting arguments are set correctly to ascending on first click', () => {
     const appServices = new AppServices();

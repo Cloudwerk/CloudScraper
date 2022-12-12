@@ -1,6 +1,5 @@
 import { IColumn } from '@fluentui/react';
 import 'jest';
-import { graphConfig } from '../authConfig';
 import { AppServices } from './AppServices';
 import graphResponseMockData from './mockData';
 import { decodeJSON } from './RequestSites';
