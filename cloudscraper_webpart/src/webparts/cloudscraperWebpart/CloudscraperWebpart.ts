@@ -11,18 +11,15 @@ import { IReadonlyTheme } from '@microsoft/sp-component-base';
 import * as strings from 'CloudscraperWebpartWebPartStrings';
 import { CloudScraper } from './cloudscraper/App/CloudScraper';
 import { ICloudscraperWebpartProps } from './cloudscraper/ICloudscraperWebpartProps';
-import { GraphFI } from '@pnp/graph';
-import { getGraph } from '../../pnp-preset';
 import { AppServices } from './cloudscraper/Model/AppServices';
-import { TooltipHost } from 'office-ui-fabric-react';
+import { getGraph } from '../../pnp-preset';
 
 export interface ICloudscraperWebpartWebPartProps {
   description: string;
 }
 
 export default class CloudscraperWebpartWebPart extends BaseClientSideWebPart<ICloudscraperWebpartWebPartProps> {
-  private appServices: AppServices = new AppServices;
-  private graphClient: GraphFI;
+  private appServices: AppServices = new AppServices();
   private _isDarkTheme: boolean = false;
   private _environmentMessage: string = '';
 
@@ -37,12 +34,11 @@ export default class CloudscraperWebpartWebPart extends BaseClientSideWebPart<IC
     ReactDom.render(element, this.domElement);
   }
 
-  protected onInit(): Promise<void> {
-    this._environmentMessage = this._getEnvironmentMessage();
-    this.graphClient = getGraph(this.context);
-    this.appServices.graphClient = this.graphClient;
+  protected async onInit() {
+    await super.onInit();
 
-    return super.onInit();
+    this._environmentMessage = this._getEnvironmentMessage();
+    this.appServices.graphClient = getGraph();
   }
 
   private _getEnvironmentMessage(): string {
