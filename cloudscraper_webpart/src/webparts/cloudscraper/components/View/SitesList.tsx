@@ -1,13 +1,13 @@
 // import { ConstrainMode, DetailsList, DetailsListLayoutMode, IColumn, Link, SelectionMode } from '@fluentui/react';
-import React from 'react';
+import * as React from 'react';
 import { IColumn } from '@fluentui/react/lib/components/DetailsList/DetailsList.types';
 import { DetailsList, SelectionMode, DetailsListLayoutMode, ConstrainMode, Link } from '@fluentui/react';
 import { useContext } from 'react';
 import { AppContext } from '../Context/AppContext';
 import { IRenderSitesListProps } from '../Interfaces/IRenderSitesListProps';
-import { RequestSites } from '../Model/RequestSites';
+import { getSites } from '../Model/getSites';
 
-export const RenderSitesList = (props: IRenderSitesListProps) => {
+export const SitesList = (props: IRenderSitesListProps) => {
     let _columns: IColumn[];
     const appContext = useContext(AppContext).appContext;
 
@@ -35,7 +35,7 @@ export const RenderSitesList = (props: IRenderSitesListProps) => {
         
     function Sort(ev: React.MouseEvent<HTMLElement>, column: IColumn): void {
         appContext.onSortChanged(column);
-        RequestSites(appContext, true);
+        getSites(appContext, true);
     }
 
     function onRenderLink(item: any, index: any, column: any) {

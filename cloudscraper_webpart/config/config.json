@@ -2,17 +2,17 @@
   "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
   "version": "2.0",
   "bundles": {
-    "cloudscraper-webpart-web-part": {
+    "cloudscraper-web-part": {
       "components": [
         {
-          "entrypoint": "./lib/webparts/cloudscraperWebpart/CloudscraperWebpartWebPart.js",
-          "manifest": "./src/webparts/cloudscraperWebpart/CloudscraperWebpartWebPart.manifest.json"
+          "entrypoint": "./lib/webparts/cloudscraper/CloudscraperWebPart.js",
+          "manifest": "./src/webparts/cloudscraper/CloudscraperWebPart.manifest.json"
         }
       ]
     }
   },
   "externals": {},
   "localizedResources": {
-    "CloudscraperWebpartWebPartStrings": "lib/webparts/cloudscraperWebpart/loc/{locale}.js"
+    "CloudscraperWebPartStrings": "lib/webparts/cloudscraper/loc/{locale}.js"
   }
 }

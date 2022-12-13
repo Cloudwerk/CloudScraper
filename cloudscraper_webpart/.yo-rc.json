@@ -2,9 +2,14 @@
   "@microsoft/generator-sharepoint": {
     "plusBeta": false,
     "isCreatingSolution": true,
-    "version": "1.15.2",
+    "nodeVersion": "16.17.0",
+    "sdksVersions": {
+      "@microsoft/microsoft-graph-client": "3.0.2",
+      "@microsoft/teams-js": "2.4.1"
+    },
+    "version": "1.16.1",
     "libraryName": "cloudscraper-webpart",
-    "libraryId": "20d48021-42bd-4f4e-b059-1b27acb3a144",
+    "libraryId": "3114a543-b5ab-4658-82dd-8cbbc08bdbc0",
     "environment": "spo",
     "packageManager": "npm",
     "solutionName": "cloudscraper-webpart",

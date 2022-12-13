@@ -1,15 +1,15 @@
-import React from "react";
+import * as React from "react";
 import { PrimaryButton, SearchBox, Stack, StackItem } from "@fluentui/react";
 import { IStackTokens } from "@fluentui/react/lib/components/Stack/Stack.types";
 import { useContext } from "react";
 import { AppContext } from "../Context/AppContext";
-import { RequestSites } from "../Model/RequestSites";
+import { getSites } from "../Model/getSites";
 
 export const SearchComponents = () => {
     const appContext = useContext(AppContext).appContext;
 
     const LoadSites = async (): Promise<void> => {
-        await RequestSites(appContext)
+        await getSites(appContext)
     }
 
     const stackTokens: IStackTokens = { 
@@ -35,8 +35,8 @@ export const SearchComponents = () => {
                     }}
                     onSearch={newValue => {
                         console.log(newValue);
-                        appContext.searchArgs = newValue; // weglassen?
-                        RequestSites(appContext);
+                        appContext.searchArgs = newValue; // Kann eventuell weggelassen werden?
+                        getSites(appContext);
                     }}
                 />
             </StackItem>

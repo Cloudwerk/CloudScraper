@@ -8,24 +8,23 @@ import {
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import { IReadonlyTheme } from '@microsoft/sp-component-base';
 
-import * as strings from 'CloudscraperWebpartWebPartStrings';
-import { CloudScraper } from './cloudscraper/App/CloudScraper';
-import { ICloudscraperWebpartProps } from './cloudscraper/ICloudscraperWebpartProps';
-import { AppServices } from './cloudscraper/Model/AppServices';
-import { getGraph } from '../../pnp-preset';
+import * as strings from 'CloudscraperWebPartStrings';
+import { Cloudscraper } from './components/Cloudscraper';
+import { ICloudscraperProps } from './components/ICloudscraperProps';
+import { AppServices } from './components/Model/AppServices';
 
-export interface ICloudscraperWebpartWebPartProps {
+export interface ICloudscraperWebPartProps {
   description: string;
 }
 
-export default class CloudscraperWebpartWebPart extends BaseClientSideWebPart<ICloudscraperWebpartWebPartProps> {
+export default class CloudscraperWebPart extends BaseClientSideWebPart<ICloudscraperWebPartProps> {
   private appServices: AppServices = new AppServices();
   private _isDarkTheme: boolean = false;
   private _environmentMessage: string = '';
 
   public render(): void {
-    const element: React.ReactElement<ICloudscraperWebpartProps> = React.createElement(
-      CloudScraper,
+    const element: React.ReactElement<ICloudscraperProps> = React.createElement(
+      Cloudscraper,
       {
         appServices: this.appServices
       }
@@ -34,19 +33,38 @@ export default class CloudscraperWebpartWebPart extends BaseClientSideWebPart<IC
     ReactDom.render(element, this.domElement);
   }
 
-  protected async onInit() {
-    await super.onInit();
-
-    this._environmentMessage = this._getEnvironmentMessage();
-    this.appServices.graphClient = getGraph();
+  protected onInit(): Promise<void> {
+    return this._getEnvironmentMessage().then(message => {
+      this._environmentMessage = message;
+    });
   }
 
-  private _getEnvironmentMessage(): string {
-    if (!!this.context.sdks.microsoftTeams) { // running in Teams
-      return this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentTeams : strings.AppTeamsTabEnvironment;
+
+
+  private _getEnvironmentMessage(): Promise<string> {
+    if (!!this.context.sdks.microsoftTeams) { // running in Teams, office.com or Outlook
+      return this.context.sdks.microsoftTeams.teamsJs.app.getContext()
+        .then(context => {
+          let environmentMessage: string = '';
+          switch (context.app.host.name) {
+            case 'Office': // running in Office
+              environmentMessage = this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentOffice : strings.AppOfficeEnvironment;
+              break;
+            case 'Outlook': // running in Outlook
+              environmentMessage = this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentOutlook : strings.AppOutlookEnvironment;
+              break;
+            case 'Teams': // running in Teams
+              environmentMessage = this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentTeams : strings.AppTeamsTabEnvironment;
+              break;
+            default:
+              throw new Error('Unknown host');
+          }
+
+          return environmentMessage;
+        });
     }
 
-    return this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentSharePoint : strings.AppSharePointEnvironment;
+    return Promise.resolve(this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentSharePoint : strings.AppSharePointEnvironment);
   }
 
   protected onThemeChanged(currentTheme: IReadonlyTheme | undefined): void {

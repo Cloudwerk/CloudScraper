@@ -13,9 +13,7 @@
     "outDir": "lib",
     "inlineSources": false,
     "strictNullChecks": false,
-    "noUnusedLocals": false,
     "noImplicitAny": true,
-    "allowSyntheticDefaultImports": true,
 
     "typeRoots": [
       "./node_modules/@types",
