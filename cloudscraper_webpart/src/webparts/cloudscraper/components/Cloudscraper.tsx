@@ -2,6 +2,7 @@ import * as React from 'react';
 import { AppContext } from './Context/AppContext';
 import { useObservable } from './Context/Observable';
 import { ICloudscraperProps } from './ICloudscraperProps';
+import { PagingButton } from './View/PagingButton';
 import { SearchComponents } from './View/SearchComponents';
 import { SitesList } from './View/SitesList';
 
@@ -15,6 +16,7 @@ export const Cloudscraper = (props: ICloudscraperProps) => {
       <AppContext.Provider value={{appContext: appServices}} >
         <SearchComponents />
         <SitesList sitesList={sitesArray} />
+        { (appServices.nextLink !== "") ? <PagingButton /> : null }
       </AppContext.Provider>
     </div>
   )

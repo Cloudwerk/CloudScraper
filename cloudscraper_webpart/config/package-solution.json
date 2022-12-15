@@ -3,10 +3,16 @@
   "solution": {
     "name": "cloudscraper-webpart-client-side-solution",
     "id": "3114a543-b5ab-4658-82dd-8cbbc08bdbc0",
-    "version": "1.0.0.0",
+    "version": "1.0.0.1",
     "includeClientSideAssets": true,
     "skipFeatureDeployment": true,
     "isDomainIsolated": false,
+    "webApiPermissionRequests": [
+      {
+        "resource": "Microsoft Graph",
+        "scope": "Sites.Read.All"
+      }
+    ],
     "developer": {
       "name": "",
       "websiteUrl": "",

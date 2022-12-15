@@ -1,7 +1,7 @@
 // import { ConstrainMode, DetailsList, DetailsListLayoutMode, IColumn, Link, SelectionMode } from '@fluentui/react';
 import * as React from 'react';
 import { IColumn } from '@fluentui/react/lib/components/DetailsList/DetailsList.types';
-import { DetailsList, SelectionMode, DetailsListLayoutMode, ConstrainMode, Link } from '@fluentui/react';
+import { DetailsList, SelectionMode, DetailsListLayoutMode, ConstrainMode, Link, } from '@fluentui/react';
 import { useContext } from 'react';
 import { AppContext } from '../Context/AppContext';
 import { IRenderSitesListProps } from '../Interfaces/IRenderSitesListProps';
@@ -14,7 +14,6 @@ export const SitesList = (props: IRenderSitesListProps) => {
     _columns = [
         { key: 'name', name: 'Name', fieldName: 'SiteName', minWidth: 200, maxWidth: 300, isResizable: true, },
         { key: 'webUrl', name: 'URL', fieldName: 'Url', minWidth: 200, maxWidth: 400, isResizable: true, onRender: onRenderLink},
-        { key: '', name: 'Owner', fieldName: 'SiteOwner', minWidth: 100, maxWidth: 250, isResizable: true, },
         { key: 'description', name: 'Description', fieldName: 'Description', minWidth: 300, maxWidth: 350, isResizable: true, },
         { key: 'lastModifiedDateTime', name: 'Date Modified', fieldName: 'DateModified', minWidth: 150, maxWidth: 200, isResizable: true, showSortIconWhenUnsorted: true, onColumnClick: Sort, isSorted: appContext.getSorted('lastModifiedDateTime'), isSortedDescending: appContext.getSortedDesc('lastModifiedDateTime')},
         { key: 'createdDateTime', name: 'Date Created', fieldName: 'DateCreated', minWidth: 150, maxWidth: 200, isResizable: true, showSortIconWhenUnsorted: true, onColumnClick: Sort, isSorted: appContext.getSorted('createdDateTime'), isSortedDescending: appContext.getSortedDesc('createdDateTime')}

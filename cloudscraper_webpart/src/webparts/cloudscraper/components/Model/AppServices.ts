@@ -8,10 +8,10 @@ export class AppServices {
 
     public sitesList = new Observable<ISitesArray[]>([]); // Observable to track changes
     public nextLink: string = ""; // Link to load further results if there are any
-    public amountSites: number = 5; // Set the number of sites that should be loaded at a time
+    public amountSites: number = 10; // Set the number of sites that should be loaded at a time
     public loadCounter: number = 1; // Track how many more pages were loaded, used for sorting
 
-    public searchArgs: string = "*";
+    public searchArgs: string = "/sites?search=*";
     public sortArgs: string = "&$orderBy=createdDateTime";
     public isSorted: boolean = false;
     public isSortedDesc: boolean = false;
