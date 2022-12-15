@@ -1,12 +1,10 @@
 import { IColumn } from "@fluentui/react/lib/DetailsList";
-import { GraphFI } from "@pnp/graph";
+import { WebPartContext } from "@microsoft/sp-webpart-base";
 import { Observable } from "../Context/Observable";
 import { ISitesArray } from "../Interfaces/ISitesArray";
 
 export class AppServices {
-
-
-    public graphClient: GraphFI;
+    public context?: WebPartContext;
 
     public sitesList = new Observable<ISitesArray[]>([]); // Observable to track changes
     public nextLink: string = ""; // Link to load further results if there are any
