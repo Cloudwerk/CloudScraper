@@ -11,11 +11,12 @@ export async function getSites(appServices: AppServices, keepCount?: boolean) {
         appServices.loadCounter = 1;
     }
 
+    console.log('/sites?search=' + `${appServices.searchArgs}` + `${appServices.sortArgs}` + `&$top=${appServices.amountSites * appServices.loadCounter}`)
     await appServices.context.msGraphClientFactory
         .getClient('3')
         .then((client: MSGraphClientV3): void => {
             client 
-                .api(`${appServices.searchArgs}` + `${appServices.sortArgs}` + `&$top=${appServices.amountSites * appServices.loadCounter}`)
+                .api('/sites?search=' + `${appServices.searchArgs}` + `${appServices.sortArgs}` + `&$top=${appServices.amountSites * appServices.loadCounter}`)
                 .get((error: any, response: any, rawResponse?: any) => {
                     console.log("Error:", error);
                     console.log("Response:", response);

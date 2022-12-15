@@ -28,6 +28,7 @@ export const SearchComponents = () => {
                     onChange={(ev: React.ChangeEvent<HTMLInputElement> | undefined, text?: string): void => {
                         if (text) {
                             appContext.searchArgs = text as string;
+                            console.log(text);
                         }
                         else {
                             appContext.searchArgs = "*";
