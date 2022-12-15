@@ -3,20 +3,19 @@ import { MSGraphClientV3 } from '@microsoft/sp-http'
 import { ISitesArray } from "../Interfaces/ISitesArray";
 
 
-export async function getSites(appServices: AppServices, keepCount?: boolean) {
-    let sitesList: ISitesArray[] = [];
+export async function getSites(appServices: AppServices, keepCount?: boolean): Promise<void> {
+    const sitesList: ISitesArray[] = [];
     let graphValues: any[] = [];
 
     if (keepCount !== true) {
         appServices.loadCounter = 1;
     }
 
-    console.log('/sites?search=' + `${appServices.searchArgs}` + `${appServices.sortArgs}` + `&$top=${appServices.amountSites * appServices.loadCounter}`)
     await appServices.context.msGraphClientFactory
         .getClient('3')
         .then((client: MSGraphClientV3): void => {
             client 
-                .api('/sites?search=' + `${appServices.searchArgs}` + `${appServices.sortArgs}` + `&$top=${appServices.amountSites * appServices.loadCounter}`)
+                .api('/sites?search=' + appServices.searchArgs + appServices.sortArgs + '&$top=' + (appServices.amountSites * appServices.loadCounter))
                 .get((error: any, response: any, rawResponse?: any) => {
                     console.log("Error:", error);
                     console.log("Response:", response);
@@ -36,16 +35,16 @@ export async function getSites(appServices: AppServices, keepCount?: boolean) {
 
                     appServices.sitesList.set(sitesList);
                     console.log(appServices.sitesList.get());
-
-                    Promise.resolve();
                 }
                 )
         });
+
+    Promise.resolve();
 }
 
 export async function getMoreSites(appServices: AppServices, keepCount?: boolean) {
     appServices.loadCounter++;
-    let sitesList: ISitesArray[] = [...appServices.sitesList.get()];
+    const sitesList: ISitesArray[] = [...appServices.sitesList.get()];
     let graphValues: any[] = [];
 
     await appServices.context.msGraphClientFactory
@@ -81,7 +80,7 @@ export async function getMoreSites(appServices: AppServices, keepCount?: boolean
 
 
 function decodeJSON(graphValues: any[]): ISitesArray[] {
-    let decodedArray: ISitesArray[] = [];
+    const decodedArray: ISitesArray[] = [];
 
     graphValues.map((siteData) => {
         decodedArray.push({

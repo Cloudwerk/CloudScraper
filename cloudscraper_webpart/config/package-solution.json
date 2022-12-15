@@ -3,7 +3,7 @@
   "solution": {
     "name": "cloudscraper-webpart-client-side-solution",
     "id": "3114a543-b5ab-4658-82dd-8cbbc08bdbc0",
-    "version": "1.0.0.4",
+    "version": "1.0.0.5",
     "includeClientSideAssets": true,
     "skipFeatureDeployment": true,
     "isDomainIsolated": false,

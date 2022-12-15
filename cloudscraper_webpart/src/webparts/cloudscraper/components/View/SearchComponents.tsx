@@ -37,7 +37,10 @@ export const SearchComponents = () => {
                     onSearch={newValue => {
                         console.log(newValue);
                         appContext.searchArgs = newValue; // Kann eventuell weggelassen werden?
-                        getSites(appContext);
+                        getSites(appContext)
+                            .then(() => {
+                                Promise.resolve();
+                            });
                     }}
                 />
             </StackItem>

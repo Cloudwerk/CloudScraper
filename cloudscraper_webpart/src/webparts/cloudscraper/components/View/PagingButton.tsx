@@ -19,6 +19,9 @@ export const PagingButton = () => {
                 text="Load More Sites"
                 onClick={() => {
                     getMoreSites(appContext)
+                        .then(() => {
+                            Promise.resolve();
+                        })
                 }}
                 />
             </StackItem>
