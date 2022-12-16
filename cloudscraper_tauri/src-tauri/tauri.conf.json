@@ -1,13 +1,13 @@
 {
   "build": {
-    "beforeDevCommand": "npm run dev",
-    "beforeBuildCommand": "npm run build",
-    "devPath": "http:localhost:1420/",
+    "beforeDevCommand": "yarn dev",
+    "beforeBuildCommand": "yarn build",
+    "devPath": "http://localhost:1420",
     "distDir": "../dist"
   },
   "package": {
-    "productName": "cloudscraper",
-    "version": "0.1.0"
+    "productName": "cloudscraper_tauri",
+    "version": "0.0.0"
   },
   "tauri": {
     "allowlist": {
@@ -28,7 +28,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "",
+      "identifier": "com.cloudwerk.dev",
       "longDescription": "",
       "macOS": {
         "entitlements": null,
@@ -57,7 +57,7 @@
         "fullscreen": false,
         "height": 600,
         "resizable": true,
-        "title": "CloudScraper",
+        "title": "cloudscraper_tauri",
         "width": 800
       }
     ]

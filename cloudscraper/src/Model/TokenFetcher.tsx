@@ -13,7 +13,7 @@ export const TokenFetcher = () => {
 
     useEffect(() => {
         if (error instanceof InteractionRequiredAuthError) {
-            login(InteractionType.Popup, loginRequest);
+            login(InteractionType.Redirect, loginRequest);
         };
 
         if (result) {
