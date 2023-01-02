@@ -9,6 +9,10 @@ import { getSites } from '../Model/getSites';
 
 export const SitesList = (props: IRenderSitesListProps) => {
     const appContext = useContext(AppContext).appContext;
+    
+    if (appContext.initialized === false) {
+        getSites(appContext);
+    }
 
     const _columns = [
         { key: 'name', name: 'Name', fieldName: 'SiteName', minWidth: 200, maxWidth: 300, isResizable: true, },

@@ -34,11 +34,11 @@ export async function getSites(appServices: AppServices, keepCount?: boolean): P
                     });
 
                     appServices.sitesList.set(sitesList);
+                    appServices.initialized = true;
                     console.log(appServices.sitesList.get());
                 }
                 )
         });
-
     Promise.resolve();
 }
 

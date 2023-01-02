@@ -14,7 +14,9 @@ export const Cloudscraper = (props: ICloudscraperProps) => {
   return (
     <div>
       <AppContext.Provider value={{appContext: appServices}} >
+        <br />
         <SearchComponents />
+        <br />
         <SitesList sitesList={sitesArray} />
         { (appServices.nextLink !== "") ? <PagingButton /> : null }
       </AppContext.Provider>
