@@ -79,7 +79,7 @@ export async function getMoreSites(appServices: AppServices, keepCount?: boolean
 }
 
 
-function decodeJSON(graphValues: any[]): ISitesArray[] {
+export function decodeJSON(graphValues: any[]): ISitesArray[] {
     const decodedArray: ISitesArray[] = [];
 
     graphValues.map((siteData) => {

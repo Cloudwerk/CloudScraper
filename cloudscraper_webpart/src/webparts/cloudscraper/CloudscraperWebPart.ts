@@ -12,7 +12,6 @@ import { Cloudscraper } from './components/Cloudscraper';
 import { ICloudscraperProps } from './components/ICloudscraperProps';
 import { AppServices } from './components/Model/AppServices';
 import { initializeIcons } from '@fluentui/react';
-// import { getGraph } from '../../pnp-preset';
 
 export interface ICloudscraperWebPartProps {
   description: string;
