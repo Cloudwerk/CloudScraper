@@ -1,9 +1,0 @@
-{
-  "generator-teams": {
-    "promptValues": {
-      "developer": "Cloudwerk GmbH"
-    },
-    "libraryName": "cloudscraperTeams",
-    "generator-version": "4.0.1"
-  }
-}

@@ -21,7 +21,7 @@ module.exports = {
             }]
     },
     output: {
-        filename: 'bundle.tsx',
+        filename: 'components/bundle.tsx',
         path: path.resolve(__dirname, 'dist'),
     },
 };
