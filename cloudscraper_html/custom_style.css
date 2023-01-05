@@ -1,0 +1,10 @@
+.cloudscraper-bg {
+    background-image: url("./images/cloudscraper.png");
+    background-repeat: no-repeat;
+    background-size: 55%;
+    background-position: 525px;
+}
+
+.overwrite-prices-width {
+    width: 90%;
+}
